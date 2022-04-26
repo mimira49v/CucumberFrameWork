@@ -49,3 +49,16 @@ Then user is able to see employee information
 
 File where we write BDD scenarios is feature file
 this file has .feature extension
+=====================================================================
+Class 3
+Recap - we use feature file to write our scenarios
+
+- search employee by id
+- search employee by name
+
+In feature file we write scenarios using gherking language
+- Given, when, and, then, scenario, feature.
+
+After feature file, we need to create step definitions
+
+after feature file, we need to
