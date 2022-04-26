@@ -3,13 +3,13 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utils.CommonMethods;
 
-public class EmployeeSearchSteps {
+public class EmployeeSearchSteps extends CommonMethods {
 
     @Given("user is navigated to HRMS application")
     public void user_is_navigated_to_hrms_application() {
-
-        throw new io.cucumber.java.PendingException();
+        openBrowserAndLunchApplication();
     }
     @When("user enters valid admin credentials")
     public void user_enters_valid_admin_credentials() {
