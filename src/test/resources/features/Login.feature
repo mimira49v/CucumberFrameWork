@@ -9,7 +9,7 @@ Feature: Validation of login scenarios
     Given user is navigated to HRMS application
     When user enters valid ess username and password
     And user clicks on login button
-    Then ess user is succefully logged in
+    Then ess user is successfully logged in
 
   Scenario: Invalid login
     Given user is navigated to HRMS application

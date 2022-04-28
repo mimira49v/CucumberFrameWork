@@ -8,10 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import steps.PageInitializers;
 import java.util.concurrent.TimeUnit;
 
-public class CommonMethods {
+public class CommonMethods extends PageInitializers {
 
     public static WebDriver driver;
 
@@ -32,6 +32,7 @@ public class CommonMethods {
         driver.get(ConfigReader.getPropertyValue("url"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        initializePageObjects();
     }
 
     public static void sendText(WebElement element, String textToSend){
