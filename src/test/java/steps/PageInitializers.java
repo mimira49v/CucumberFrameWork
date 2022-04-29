@@ -9,7 +9,7 @@ public class PageInitializers {
     public static EmployeeSearchPage employeeSearchPage;
 
     public static void initializePageObjects(){
-        login = new LoginPage(); // this part will be called in CommonMethods!
+        login = new LoginPage();
         employeeSearchPage = new EmployeeSearchPage();
     }
 }

@@ -66,4 +66,8 @@ public class CommonMethods extends PageInitializers {
     public static void tearDown(){
         driver.quit();
     }
+
+    public static void getErrorMsg(WebElement element){
+        element.getText();
+    }
 }

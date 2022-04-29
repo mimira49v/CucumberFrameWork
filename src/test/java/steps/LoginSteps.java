@@ -1,10 +1,7 @@
 package steps;
 
-import Pages.LoginPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
 
 
@@ -51,14 +48,10 @@ public class LoginSteps extends CommonMethods {
         sendText(login.passwordbox, "Hum@nhrm");
     }
 
-    @Then("user see error message on the screen")
-    public void user_see_error_message_on_the_screen() {
-        //homework - verify error message for this
-        tearDown();
-    }
-
     @Then("user sees error message on the screen")
     public void user_sees_error_message_on_the_screen() {
-        System.out.println("INVALID LOGIN");
+//      homework - verify error message for this
+        getErrorMsg(login.errorMsg);
+//      tearDown();
     }
 }

@@ -24,6 +24,5 @@ public class EmployeeSearchPage extends CommonMethods {
 
     public EmployeeSearchPage(){
         PageFactory.initElements(driver,this);
-
     }
 }
