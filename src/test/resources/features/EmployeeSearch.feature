@@ -1,4 +1,5 @@
 Feature: Search an employee in HRMS
+  @regression
   Scenario: Search an employee by id
     * user is navigated to HRMS application
     * user enters valid admin credentials
@@ -7,7 +8,7 @@ Feature: Search an employee in HRMS
     * user enters valid employee id
     * user clicks on search button
     * user is able to see employee information
-
+@smoke
   Scenario: Search an employee by name
     * user is navigated to HRMS application
     * user enters valid admin credentials

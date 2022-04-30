@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import utils.CommonMethods;
 
 public class LoginPage extends CommonMethods {
-
+//  Object repository
     @FindBy(id="txtUsername")
     public WebElement usernamebox;
 
@@ -16,7 +16,9 @@ public class LoginPage extends CommonMethods {
     @FindBy(id="btnLogin")
     public WebElement loginbtn;
 
+//          defining page factory concept from selenium
     public LoginPage(){
+//         it will initialize all the locator in this peticular class
         PageFactory.initElements(driver, this);
     }
 

@@ -65,7 +65,7 @@ after feature file, we need to
 =======================================================================
 Class 4
 Recap - common methods class in our framework is used to write all the methods we will be using in
-majority of scenarios(Code reusability)
+the majority of scenarios(Code reusability)
 
 sendText method, click etc
 
@@ -73,3 +73,12 @@ In constants class we provided implicit wait, explicit wait values and test data
 
 Page object model is a design pattern
 According to page object model, we create page classes for all the screens available in the application
+=========================================================================
+Class 5 Recap
+
+Creating multiple steps classes for multiple feature files.
+
+Page Object model design pattern
+
+In common methods we are calling page initializers method, this method is going to call the objects of
+page classes which will call the constructor and these constructors will initialize all the web elements
