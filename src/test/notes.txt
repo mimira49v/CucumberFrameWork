@@ -49,7 +49,7 @@ Then user is able to see employee information
 
 File where we write BDD scenarios is feature file
 this file has .feature extension
-=====================================================================
+=====================================================================================================
 Class 3
 Recap - we use feature file to write our scenarios
 
@@ -62,7 +62,7 @@ In feature file we write scenarios using gherking language
 After feature file, we need to create step definitions
 
 after feature file, we need to
-=======================================================================
+======================================================================================================
 Class 4
 Recap - common methods class in our framework is used to write all the methods we will be using in
 the majority of scenarios(Code reusability)
@@ -73,7 +73,7 @@ In constants class we provided implicit wait, explicit wait values and test data
 
 Page object model is a design pattern
 According to page object model, we create page classes for all the screens available in the application
-=========================================================================
+=======================================================================================================
 Class 5 Recap
 
 Creating multiple steps classes for multiple feature files.
@@ -82,3 +82,19 @@ Page Object model design pattern
 
 In common methods we are calling page initializers method, this method is going to call the objects of
 page classes which will call the constructor and these constructors will initialize all the web elements
+
+=======================================================================================================
+
+Class 6
+    Recap
+        Runner class we use this class to execute test cases in cucumber.
+    Cucumber options
+        - features   - path of feature file
+        -   glue     - to provide the path of steps definitions
+        -  dryRun    - scans all the gherkin steps in feature file!Provides step definitions to add in steps classes
+        - monochrome - if it is set to true, it cleans the console
+        -   tags     - we use tags to execute scenarios in groups
+                     - here we use OR and AND to execute scenarios from 2 or more different tags together
+    Background: to put common steps among all the scenarios from single feature file, we use background
+    Hooks: we use hooks to provide pre-condition and post condition to all the scenarios
+    We always create hooks class in steps package

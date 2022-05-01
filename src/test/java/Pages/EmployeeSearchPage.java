@@ -11,6 +11,9 @@ public class EmployeeSearchPage extends CommonMethods {
     @FindBy(id="menu_pim_viewPimModule")
     public WebElement pimOption;
 
+    @FindBy(id="menu_pim_addEmployee")
+    public WebElement addEmployeeOption;
+
     @FindBy(id="menu_pim_viewEmployeeList")
     public WebElement empListOption;
 
@@ -23,8 +26,9 @@ public class EmployeeSearchPage extends CommonMethods {
     @FindBy(id="searchBtn")
     public WebElement searchButton;
 
+
+
     public EmployeeSearchPage(){
         PageFactory.initElements(driver, this);
     }
-
 }
