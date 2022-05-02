@@ -78,10 +78,4 @@ public class EmployeeSearchSteps extends CommonMethods {
         //  searchName.sendKeys("Zubair");
         sendText(employeeSearchPage.nameField, "zubair");
     }
-
-    @Then("user sees error message on the screen")
-    public void user_sees_error_message_on_the_screen() {
-        System.out.println("Error");
-    }
-
 }

@@ -95,6 +95,7 @@ Class 6
         - monochrome - if it is set to true, it cleans the console
         -   tags     - we use tags to execute scenarios in groups
                      - here we use OR and AND to execute scenarios from 2 or more different tags together
+    Background: stays in top and takes that first scenario steps and that's why they are executed first
     Background: to put common steps among all the scenarios from single feature file, we use background
     Hooks: we use hooks to provide pre-condition and post condition to all the scenarios
     We always create hooks class in steps package

@@ -19,8 +19,8 @@ import org.junit.runner.RunWith;
             // to execute the scripts in real time, we should set this value to false
             dryRun = false,
 
-//      it means the console output for cucumber test is having irrelevant information
-//      when we set it to true, it simply removes all the irrelevant information
+//          it means the console output for cucumber test is having irrelevant information
+//          when we set it to true, it simply removes all the irrelevant information
             monochrome = true,
             tags = "@smoke"
     )

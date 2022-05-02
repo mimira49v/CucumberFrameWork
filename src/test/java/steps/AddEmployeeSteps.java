@@ -1,8 +1,11 @@
 package steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utils.CommonMethods;
+import java.util.List;
+import java.util.Map;
 
 public class AddEmployeeSteps extends CommonMethods {
 
@@ -40,10 +43,30 @@ public class AddEmployeeSteps extends CommonMethods {
         sendText(addEmployeePage.lastNameField, lastNameValue);
     }
 
-    @When("user provides{string} {string} and {string}")
-    public void user_provides_and(String firstName, String middleName, String lastName){
+    @When("user provides {string} {string} and {string}")
+    public void user_provides_and(String firstName, String middleName, String lastName) {
         sendText(addEmployeePage.firstNameField, firstName);
         sendText(addEmployeePage.middleNameField, middleName);
         sendText(addEmployeePage.lastNameField, lastName);
+    }
+
+    @When("user provides multiple employee data and verify they are added")
+    public void user_provides_multiple_employee_data_and_verify_they_are_added(DataTable dataTable) throws InterruptedException {
+        List<Map<String, String>> employeeNames =  dataTable.asMaps();
+        for (Map<String, String> employee :employeeNames) {
+            System.out.println(employee);
+            String firstNameValue = employee.get("firstName");
+            String middleNameValue = employee.get("middleName");
+            String lastNameValue = employee.get("lastName");
+            System.out.println(firstNameValue + " " + middleNameValue + " " + lastNameValue);
+            sendText(addEmployeePage.firstNameField, firstNameValue);
+            sendText(addEmployeePage.middleNameField, middleNameValue);
+            sendText(addEmployeePage.lastNameField, lastNameValue);
+            click(addEmployeePage.saveButton);
+            Thread.sleep(3000);
+
+            //verification of adding an employee is HW
+            click(employeeSearchPage.addEmployeeOption);
+        }
     }
 }

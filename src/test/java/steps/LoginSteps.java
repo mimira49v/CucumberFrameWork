@@ -15,11 +15,11 @@ public class LoginSteps extends CommonMethods {
 
     @When("user enters valid ess username and password")
     public void user_enters_valid_ess_username_and_password() {
-        //  LoginPage login = new LoginPage();
-        //  WebElement usernamefield = driver.findElement(By.id("txtUsername"));
-//        usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
+//      LoginPage login = new LoginPage();
+//      WebElement usernamefield = driver.findElement(By.id("txtUsername"));
+//      usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
         sendText(login.usernameBox, "tts12345");
-        //WebElement passwordField = driver.findElement(By.name("txtPassword"));
+//      WebElement passwordField = driver.findElement(By.name("txtPassword"));
         sendText(login.passwordBox, "Hum@nhrm123");
     }
 
@@ -31,17 +31,17 @@ public class LoginSteps extends CommonMethods {
 
     @When("user enters invalid username and password")
     public void user_enters_invalid_username_and_password() {
-        //  LoginPage login = new LoginPage();
-        //    WebElement usernamefield = driver.findElement(By.id("txtUsername"));
-//        usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
+//      LoginPage login = new LoginPage();
+//      WebElement usernamefield = driver.findElement(By.id("txtUsername"));
+//      usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
         sendText(login.usernameBox, "tts12345");
-        //  WebElement passwordField = driver.findElement(By.name("txtPassword"));
+//      WebElement passwordField = driver.findElement(By.name("txtPassword"));
         sendText(login.passwordBox, "Hum@nhrm");
     }
 
-    @Then("user see error message on the screen")
+    @Then("user sees error message on the screen")
     public void user_see_error_message_on_the_screen() {
-        //homework - verify error message for this
-        //   tearDown();
+//        homework - verify error message for this
+//        tearDown();
     }
 }
