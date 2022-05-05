@@ -27,17 +27,16 @@ Feature: Adding the employees in HRMS Application
     Then employee added successfully
     Examples:
       |firstName|middleName|lastName|
-      |asel     |MS        |tolga   |
-      |yazgul   |MS        |kishan  |
-      |tarik    |MS        |mujeeb  |
-      |nassir   |MS        |volkan  |
+      |Asel     |MS        |Tolga   |
+      |Yazgul   |MS        |Kishan  |
+      |Tarik    |MS        |Mujeeb  |
+      |Iassir   |MS        |Volkan  |
 
   @test @datatable
   Scenario: Add employee using data table
     When user provides multiple employee data and verify they are added
       |firstName|middleName|lastName|
-      |asel     |MS        |tolga   |
-      |yazgul   |MS        |kishan  |
-      |tarik    |MS        |mujeeb  |
-
+      |Asel     |MS        |Tolga   |
+      |Yazgul   |MS        |Kishan  |
+      |Tarik    |MS        |Mujeeb  |
 

@@ -99,3 +99,14 @@ Class 6
     Background: to put common steps among all the scenarios from single feature file, we use background
     Hooks: we use hooks to provide pre-condition and post condition to all the scenarios
     We always create hooks class in steps package
+=======================================================================================================
+Class 7
+    Recap
+        hooks - to write pre conditions and post conditions of the project, we use hooks
+                @before and @after - 2 types of hooks we have in cucumber
+                we always write hooks under steps package
+                Backround is applicable to one feature file hooks are applicable to the entire project file
+        Data driven testing part
+                1   using examples table and scenario outline
+                2   using data table
+

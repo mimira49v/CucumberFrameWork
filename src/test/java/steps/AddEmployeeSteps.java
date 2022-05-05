@@ -1,5 +1,6 @@
 package steps;
 
+import Pages.AddEmployeePage;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -54,19 +55,22 @@ public class AddEmployeeSteps extends CommonMethods {
     public void user_provides_multiple_employee_data_and_verify_they_are_added(DataTable dataTable) throws InterruptedException {
         List<Map<String, String>> employeeNames =  dataTable.asMaps();
         for (Map<String, String> employee :employeeNames) {
-            System.out.println(employee);
             String firstNameValue = employee.get("firstName");
             String middleNameValue = employee.get("middleName");
             String lastNameValue = employee.get("lastName");
-            System.out.println(firstNameValue + " " + middleNameValue + " " + lastNameValue);
+
             sendText(addEmployeePage.firstNameField, firstNameValue);
             sendText(addEmployeePage.middleNameField, middleNameValue);
             sendText(addEmployeePage.lastNameField, lastNameValue);
             click(addEmployeePage.saveButton);
-            Thread.sleep(3000);
 
-            //verification of adding an employee is HW
-            click(employeeSearchPage.addEmployeeOption);
-        }
+//          verification of adding an employee is HW
+            String fullEmployeeName = employee.get("firstName")+" "+employee.get("middleName")+" "+ employee.get("lastName");
+            if(addEmployeePage.emplVerify.getText().equals(fullEmployeeName)){
+                System.out.println(fullEmployeeName+" "+" is added successfully!");
+            } else {
+                System.out.println("Was not added : "+fullEmployeeName);}
+                    click(employeeSearchPage.addEmployeeOption);}
+                        System.out.println("Employees have been succeffully!");
     }
 }

@@ -2,6 +2,7 @@ package steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import utils.CommonMethods;
 
 
@@ -9,7 +10,7 @@ public class LoginSteps extends CommonMethods {
 
     @Then("admin user is successfully logged in")
     public void admin_user_is_successfully_logged_in() {
-        System.out.println("test passed");
+        Assert.assertTrue(dash.welcomeMessage.isDisplayed());
         // tearDown();
     }
 
@@ -18,8 +19,11 @@ public class LoginSteps extends CommonMethods {
 //      LoginPage login = new LoginPage();
 //      WebElement usernamefield = driver.findElement(By.id("txtUsername"));
 //      usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
+
         sendText(login.usernameBox, "tts12345");
+
 //      WebElement passwordField = driver.findElement(By.name("txtPassword"));
+
         sendText(login.passwordBox, "Hum@nhrm123");
     }
 
@@ -31,17 +35,17 @@ public class LoginSteps extends CommonMethods {
 
     @When("user enters invalid username and password")
     public void user_enters_invalid_username_and_password() {
-//      LoginPage login = new LoginPage();
-//      WebElement usernamefield = driver.findElement(By.id("txtUsername"));
-//      usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
+        //  LoginPage login = new LoginPage();
+        //    WebElement usernamefield = driver.findElement(By.id("txtUsername"));
+//        usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
         sendText(login.usernameBox, "tts12345");
-//      WebElement passwordField = driver.findElement(By.name("txtPassword"));
+        //  WebElement passwordField = driver.findElement(By.name("txtPassword"));
         sendText(login.passwordBox, "Hum@nhrm");
     }
 
-    @Then("user sees error message on the screen")
+    @Then("user see error message on the screen")
     public void user_see_error_message_on_the_screen() {
-//        homework - verify error message for this
-//        tearDown();
+        //homework - verify error message for this
+        //   tearDown();
     }
 }
