@@ -1,5 +1,6 @@
 package utils;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -20,7 +21,7 @@ public class ExcelReader {
         // opened the file
         try {
             FileInputStream fis = new FileInputStream(filePath);
-            book = new XSSFWorkbook(fis);
+            book = new HSSFWorkbook(fis);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -28,12 +29,14 @@ public class ExcelReader {
         }
     }
 
+//  open the sheet in excell file
     public static void getSheet(String sheetName){
         // identified the sheet we gonna load the data from
         sheet = book.getSheet(sheetName);
     }
 //  it will return total no of rows available in the worksheet
     public static int getRowCount(){
+//      returns only those rows that have the data  (getPhysicalNumberOfRows)
         return sheet.getPhysicalNumberOfRows();
     }
 //  it will return the total no of columns in every row

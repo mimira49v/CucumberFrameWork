@@ -5,7 +5,6 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -19,6 +19,24 @@ public class AddEmployeePage extends CommonMethods {
     @FindBy(id="btnSave")
     public WebElement saveButton;
 
+    @FindBy(id="employeeId")
+    public WebElement empIDLocator;
+
+    @FindBy(id="photofile")
+    public WebElement photograph;
+
+    @FindBy(id="chkLogin")
+    public WebElement checkBox;
+
+    @FindBy(id="user_name")
+    public WebElement createUsername;
+
+    @FindBy(id="user_password")
+    public WebElement createPassword;
+
+    @FindBy(id="re_password")
+    public WebElement confirmPassword;
+
     @FindBy(xpath = "//div[@id='profile-pic']//child::h1")
     public WebElement emplVerify;
 
