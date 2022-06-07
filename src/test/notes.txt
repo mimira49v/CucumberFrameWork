@@ -1,0 +1,122 @@
+Gherkin language
+
+Given - precondition
+When -  actions we need to perform
+And - supporting tag
+Then - then expected results
+
+========= Recap =========
+What is framework?
+- It is an organized structure of folders and packages which allows us to write clean
+and maintainable code.
+Build management tool --> maven
+pom.xml is the main configuration file in maven project.
+
+Main - it is used to write the code for development
+test - it is used to write the code to test the application
+    -- java - for tech/coding we use java directory
+    -- resources - for non-tech/non code we use resources
+
+Cucumber - it supports BDD
+            -- we use gherkin language(plain english text) to write the scenarios
+            -- it works with junit
+
+Scenario -- it is a test case
+Given -- pre-condition
+When -- actions
+And -- supporting tag
+Then -- results
+
+US 12345 - Employee search
+
+Scenario - search employee by id
+Given user is navigated to HRMS Application
+When user enters valid admin credentials
+And user clicks on login button
+And user navigates to employee list page
+When user enters valid employee id
+And click on search button
+Then user is able to see employee information
+
+Scenario - search employee by id
+Given user is navigated to HRMS Application
+When user enters valid admin credentials
+And user clicks on login button
+And user navigates to employee list page
+When user enters valid name
+And clicks on search button
+Then user is able to see employee information
+
+File where we write BDD scenarios is feature file
+this file has .feature extension
+=====================================================================================================
+Class 3
+Recap - we use feature file to write our scenarios
+
+- search employee by id
+- search employee by name
+
+In feature file we write scenarios using gherking language
+- Given, when, and, then, scenario, feature.
+
+After feature file, we need to create step definitions
+
+after feature file, we need to
+======================================================================================================
+Class 4
+Recap - common methods class in our framework is used to write all the methods we will be using in
+the majority of scenarios(Code reusability)
+
+sendText method, click etc
+
+In constants class we provided implicit wait, explicit wait values and test data path
+
+Page object model is a design pattern
+According to page object model, we create page classes for all the screens available in the application
+=======================================================================================================
+Class 5 Recap
+
+Creating multiple steps classes for multiple feature files.
+
+Page Object model design pattern
+
+In common methods we are calling page initializers method, this method is going to call the objects of
+page classes which will call the constructor and these constructors will initialize all the web elements
+
+=======================================================================================================
+
+Class 6
+    Recap
+        Runner class we use this class to execute test cases in cucumber.
+    Cucumber options
+        - features   - path of feature file
+        -   glue     - to provide the path of steps definitions
+        -  dryRun    - scans all the gherkin steps in feature file!Provides step definitions to add in steps classes
+        - monochrome - if it is set to true, it cleans the console
+        -   tags     - we use tags to execute scenarios in groups
+                     - here we use OR and AND to execute scenarios from 2 or more different tags together
+    Background: stays in top and takes that first scenario steps and that's why they are executed first
+    Background: to put common steps among all the scenarios from single feature file, we use background
+    Hooks: we use hooks to provide pre-condition and post condition to all the scenarios
+    We always create hooks class in steps package
+=======================================================================================================
+Class 7
+    Recap
+        hooks - to write pre conditions and post conditions of the project, we use hooks
+                @before and @after - 2 types of hooks we have in cucumber
+                we always write hooks under steps package
+                Backround is applicable to one feature file hooks are applicable to the entire project file
+        Data driven testing part
+                1   using examples table and scenario outline
+                2   using data table
+=======================================================================================================
+Class 8-9
+maven surefile plugin
+to clean the project we have to use mvn clean from cmd/terminal
+to run the project we have to use mvn test from cmd/terminal
+override the tag from cmd we have to write : mvn clean verify - Dcucumber.filter.tags="@latest"
+
+mvn clean - it cleans your target folder
+mvn test  - to execute our test cases
+verify    - verifies your code
+package   - convert your code to packages
