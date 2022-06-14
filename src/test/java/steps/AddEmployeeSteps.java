@@ -15,6 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static utils.GlobalVariables.tableData;
+
 public class AddEmployeeSteps extends CommonMethods {
 
     @When("user clicks on PIM option")
@@ -140,16 +142,18 @@ public class AddEmployeeSteps extends CommonMethods {
         AddEmployeePage ad = new AddEmployeePage();
         GlobalVariables.emp_Id = ad.empIDLocator.getAttribute("value");
         GlobalVariables.firstName = ad.firstNameField.getAttribute("value");
-        System.out.println("Emp_id"+GlobalVariables.emp_Id);
-        System.out.println("firstName"+GlobalVariables.firstName);
+        System.out.println("Emp_id :"+GlobalVariables.emp_Id);
+        System.out.println("firstName :"+GlobalVariables.firstName);
     }
 
     @Then("verify the results from UI and Backend")
     public void verify_the_results_from_ui_and_backend() {
-        String firtNameFromDb = GlobalVariables.tableData.get(0).get("emp_firstname");
+        String firtNameFromDb = tableData.get(0).get("emp_firstname");
+        String dbEmpId = tableData.get(0).get("employee_id");
 //      System.out.println("First Name from Database "+firtNameFromDb);
 //      System.out.println("First Name from GUI "+GlobalVariables.firstName);
 
         Assert.assertEquals(firtNameFromDb, GlobalVariables.firstName);
+        Assert.assertEquals(dbEmpId, GlobalVariables.emp_Id);
     }
 }

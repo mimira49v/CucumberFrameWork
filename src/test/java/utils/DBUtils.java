@@ -12,15 +12,16 @@ public class DBUtils {
 
         Connection connection = null;
 //      variable to hold the conection
-        Statement statment = null;
-//      helps us execute the queries on the database
-        ResultSet result = null;
-//      helps us store the result
-
+            Statement statment = null;
+//          helps us execute the queries on the database
+                ResultSet result = null;
+//              helps us store the result
 
         ResultSetMetaData resultSetMetaData = null;
 //      object to give the information about table and its data
-        List<Map<String,String>> tableData=null;
+
+        List<Map<String, String>> tableData = null;
+
         try {       // needs to start from 1
 
             connection = DriverManager.getConnection(ConfigReader.getPropertyValue("dBUrl")
