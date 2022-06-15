@@ -14,7 +14,6 @@ import utils.GlobalVariables;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import static utils.GlobalVariables.tableData;
 
 public class AddEmployeeSteps extends CommonMethods {

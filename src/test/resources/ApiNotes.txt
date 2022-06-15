@@ -1,0 +1,16 @@
+Rest assured API
+
+It is DSL (domain specific language)
+It is java based libriarry that is used to automate rest API
+         Given -- pre-condition
+         When -- actions
+         And -- supporting tag
+         Then -- results
+Rest assured follows the functionality of BDD
+pre-condition - request preparation, request specification
+given - prepare the request
+when  - hitting the end point (send the request)
+then - expected response
+
+NOTE : baseURI = baseURL
+
