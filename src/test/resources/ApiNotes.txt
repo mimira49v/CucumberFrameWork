@@ -14,3 +14,9 @@ then - expected response
 
 NOTE : baseURI = baseURL
 
+================================================================
+Class 6
+Java rest assured API -
+given - to prepare the request
+when - making a call
+then - verication/ assertion
