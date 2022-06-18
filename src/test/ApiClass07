@@ -1,0 +1,24 @@
+Recap
+To create an employee we use :
+Post
+Base url = base URI
+end point
+Headers
+
+Then -
+- jsonPath()
+- To retrieve employee from the database :
+GET  - (no body)
+Query parameter
+token
+@Test - junit annotation we use to execute our test cases
+@Fix method order we use to change the flow of execution(Name.Ascending - alphabetical order)
+
+To update the details of the employee
+PUT
+
+body header token
+end point
+
+200 vs 201
+
