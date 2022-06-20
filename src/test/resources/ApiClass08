@@ -1,0 +1,11 @@
+token
+end point
+200 vs 201
+
+
+Generate toke via automation
+
+Created POST request to add an employee in feature file
+API constants class - so we can update the key from one place
+if devs decide to change the path we can just rename it in constants
+API payload constants - the body we need to create, update employee record, we can pass it from api payload constants class

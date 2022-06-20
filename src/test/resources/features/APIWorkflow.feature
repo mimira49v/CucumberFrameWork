@@ -27,3 +27,11 @@ Feature: this feature covers all the API related scenario
       |emp_firstname|emp_lastname|emp_middle_name|emp_gender|emp_birthday|emp_status|emp_job_title|
       |Aymat         |tata          |MS             |Male    |1988-02-28  |Employee |QA         |
 
+  @dynamic
+  Scenario: Adding an employee using dynamic scenario
+    Given a request is prepared to create an employee via json payload via dynamic payload "Aymat", "tata", "MS", "M", "1988-02-28", "Employee", "QA"
+    When a POST call is made to create an employee
+    Then the status code for the created employee is 201
+    And the employee created contains key "Message" and value "Employee Created"
+    Then the employee id "Employee.employee_id" is stored as a global variable to be used for other calls
+

@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 
         monochrome = true,
 
-        tags = "@api",
+        tags = "@dynamic",
 
         plugin = {"pretty", "html:target/report/cucumber.html", "json:target/report/cucumber.json", "junit:target/report/cucumber.xml"}
 )

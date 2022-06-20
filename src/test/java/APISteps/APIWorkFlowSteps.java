@@ -7,15 +7,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apiguardian.api.API;
 import org.junit.Assert;
 import utils.APIConstants;
 import utils.APIPayLoadConstants;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.IsEqual.equalTo; // THIS ONE NEEDS TO BE IMPORTED FOR ASSERTION
 
@@ -97,15 +94,34 @@ public class APIWorkFlowSteps {
         //data comes from get call body
         Map<String, String> actualData = response.body().jsonPath().get(empObject);
 
-        for (Map<String, String> singelePairOfData :expectedData) {
+        for (Map<String, String> singelePairOfData : expectedData) {
             //it will return the set of keys from the map
             Set<String> keys = singelePairOfData.keySet();
 
-            for (String key:keys) {
+            for (String key : keys) {
                 String expectedValue = singelePairOfData.get(key);
                 String actualValue = actualData.get(key);
                 Assert.assertEquals(expectedValue, actualValue);
             }
         }
+    }
+
+    @Given("a request is prepared to create an employee via json payload")
+        public void a_request_is_prepared_to_create_an_employee_via_json_payload() {
+            request = given().header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE).
+                           header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
+                                body(APIPayLoadConstants.createEmployeePayloadViaJson());
+
+        }
+
+    @Given("a request is prepared to create an employee via json payload via dynamic payload {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+        public void aRequestIsPreparedToCreateAnEmployeeViaJsonPayloadViaDynamicPayload(
+            String firstName, String lastName, String middleName, String gender, String dob, String status, String jobTitle) {
+
+            request = given().header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE).
+                          header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
+                               body(APIPayLoadConstants.createEmployeeDynamic(firstName,lastName,middleName,
+                                       gender,dob,status,jobTitle));
+
     }
 }
