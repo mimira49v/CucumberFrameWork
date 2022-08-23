@@ -5,11 +5,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.WebDriverWait;       // added this line 28 it's not a part of the original framework
 import steps.PageInitializers;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -24,13 +24,16 @@ public class CommonMethods extends PageInitializers {
         ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
         switch (ConfigReader.getPropertyValue("browser")){
             case "chrome":
+
+                ChromeOptions ChromeOptions = new ChromeOptions();
+                ChromeOptions.setHeadless(true); // prevents from opening chrome runs the tests without it
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+              driver = new ChromeDriver(ChromeOptions);
                 break;
             case "firefox":
-                WebDriverManager.firefoxdriver().setup();
+ /*             WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
-                break;
+                break;  */
             default:
                 throw new RuntimeException("Invalid browser name");
         }

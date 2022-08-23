@@ -16,9 +16,8 @@ public class DBUtils {
 //          helps us execute the queries on the database
                 ResultSet result = null;
 //              helps us store the result
-
-        ResultSetMetaData resultSetMetaData = null;
-//      object to give the information about table and its data
+                    ResultSetMetaData resultSetMetaData = null;
+//                  object to give the information about table and its data
 
         List<Map<String, String>> tableData = null;
 
@@ -26,13 +25,13 @@ public class DBUtils {
 
             connection = DriverManager.getConnection(ConfigReader.getPropertyValue("dBUrl")
                          , ConfigReader.getPropertyValue("userName"), ConfigReader.getPropertyValue("dBpassword"));
-            // getting the database connection from driverManager class
+//          getting the database connection from driverManager class
             statment = connection.createStatement();
-            // creating a statement to execute the queries
+//          creating a statement to execute the queries
             result = statment.executeQuery(query);
-            // executing the queries and storing the results in ResultSet
+//          executing the queries and storing the results in ResultSet
             resultSetMetaData=result.getMetaData();
-            // getting the resultSet object so that we fetch the column names and other info related to table
+//          getting the resultSet object so that we fetch the column names and other info related to table
             tableData = new ArrayList<>();
             while (result.next()) {
                 Map<String, String> row =  new LinkedHashMap<>();

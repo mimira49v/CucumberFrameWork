@@ -3,7 +3,6 @@ package utils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class ExcelReader {
     static Sheet sheet;
 
     public static void openExcel(String filePath) {
-        // opened the file
+//      opened the file
         try {
             FileInputStream fis = new FileInputStream(filePath);
             book = new HSSFWorkbook(fis);

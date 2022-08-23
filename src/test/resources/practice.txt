@@ -1,0 +1,4 @@
+StringBuilder str = new StringBuild("WelcomeGeeks");
+StringBuilder rev = str.reverse();
+sout (rev.toString());
+

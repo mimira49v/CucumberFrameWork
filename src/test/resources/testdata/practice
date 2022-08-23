@@ -1,0 +1,40 @@
+public class ExcelReader {
+    static Workbook book;
+    static Sheet sheet;
+
+    public static openExcel(String filePath){
+        try{
+            FileInputStream fis = new FileInputStream(filePath);
+            book = new HSSWorkbook(fis);
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getSheet(String sheetName){
+        sheet = book.getSheet(sheetName);
+    }
+    public static int getRowCount(){
+        return sheet.getPhysicalNumberOfRows();
+    }
+
+    public static int getColsCount(int rowIndex){
+        return sheet.getRow(rowIndex).getPhysicalNumberOfCells();
+    }
+
+    public static List<Map<String,String>> excelIntoMap(String filePath, String sheetName){
+        openExcel(filePath);
+        getSheet(sheetname);
+            for (int row = 1; row<getRowCount(); row++){
+            // creating a map for every row
+            Map<String, String> map = new LinkedHashMap<>();
+            for (int col = 0; col < getColsCount(row); col++) {
+                map.put(getCellData(0,col), getCellData(row, col));
+            }
+            ListData.add(map);
+        }
+        return ListData;
+    }
+}

@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.equalTo;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) // executes methods alphabetically
 public class HardCodedExamples {
     String baseURI = RestAssured.baseURI = "http://hrm.syntaxtechs.net/syntaxapi/api"; // needs http://
-    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUzMzQ5MDksImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTY1NTM3ODEwOSwidXNlcklkIjoiMzc3MiJ9.qXXUi_ZNiiPz8dD7gfnybXqB4dDJg7DCu93KSVJHYOw";
+    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTk5MDQ0MDAsImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTY1OTk0NzYwMCwidXNlcklkIjoiMzc3MiJ9.KibQzAf-i6c-TO_YSdVdqPzeVDH-nw-aFEVsUu27qTE";
     static String employee_id;
 
     @Test
@@ -32,7 +32,7 @@ public class HardCodedExamples {
                         "  \"emp_job_title\": \"Probation\",\n" +
                         "  \"emp_status\": \"QA\"\n" +
                         "}");
-        // hit the end point to make a call we have to use when keyword
+//      hit the end point to make a call we have to use when keyword
         Response response = request.when().post("/createEmployee.php");     // object request is from RequestSpecification
         response.prettyPrint();                                                // prints the repsonse
         response.then().assertThat().statusCode(201);
