@@ -28,7 +28,11 @@ import org.junit.runner.RunWith;
         tags = "@db",
         //html report will be generated under target folder
 
-        plugin = {"html:target/cucumber.html", "pretty", "json:target/cucumber.json","rerun:target/failed.txt"
+        plugin = {
+                "html:target/cucumber/report.html",
+                "pretty",
+                "json:target/cucumber/report.json",
+                "rerun:target/failed.txt"
         }
 )
 

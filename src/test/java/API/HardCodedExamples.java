@@ -15,14 +15,14 @@ import static org.hamcrest.Matchers.equalTo;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) // executes methods alphabetically
 public class HardCodedExamples {
     String baseURI = RestAssured.baseURI = "http://hrm.syntaxtechs.net/syntaxapi/api"; // needs http://
-    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTk5MDQ0MDAsImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTY1OTk0NzYwMCwidXNlcklkIjoiMzc3MiJ9.KibQzAf-i6c-TO_YSdVdqPzeVDH-nw-aFEVsUu27qTE";
+    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjkzMTYwNjIsImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTY2OTM1OTI2MiwidXNlcklkIjoiMzc3MiJ9.op2RS6aEJBh3M65hwZ_xd0A1N1dyR9EGmWRHWEo0-bw";
     static String employee_id;
 
     @Test
     public void AcreateEmployee(){
         // NEED TO PREPARE THE REQUEST FIRST
         RequestSpecification request =
-                given().header("Content-type","application/json").
+                given().log().all().header("Content-type","application/json").
                 header("Authorization",token).body("{\n" +
                         "  \"emp_firstname\": \"mil222os\",\n" +
                         "  \"emp_lastname\": \"dae2222res\",\n" +
@@ -35,7 +35,7 @@ public class HardCodedExamples {
 //      hit the end point to make a call we have to use when keyword
         Response response = request.when().post("/createEmployee.php");     // object request is from RequestSpecification
         response.prettyPrint();                                                // prints the repsonse
-        response.then().assertThat().statusCode(201);
+        response.then().assertThat().statusCode(201).body("Message", equalTo("Employee Created"));
         //Hamcrest matchers                            equalTO import Matchers.equalTo;
         response.then().assertThat().body("Message",equalTo("Employee Created"));
         response.then().assertThat().body("Employee.emp_firstname", equalTo("mil222os"));

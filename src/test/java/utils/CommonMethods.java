@@ -1,6 +1,5 @@
 package utils;
 
-import io.cucumber.java.sk.Tak;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -12,8 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;       // added this line 28
 import steps.PageInitializers;
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CommonMethods extends PageInitializers {
@@ -28,12 +30,14 @@ public class CommonMethods extends PageInitializers {
                 ChromeOptions ChromeOptions = new ChromeOptions();
                 ChromeOptions.setHeadless(true); // prevents from opening chrome runs the tests without it
                 WebDriverManager.chromedriver().setup();
-              driver = new ChromeDriver(ChromeOptions);
+                driver = new ChromeDriver(ChromeOptions);
                 break;
             case "firefox":
- /*             WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;  */
+ /*
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        break;
+                */
             default:
                 throw new RuntimeException("Invalid browser name");
         }
@@ -100,5 +104,47 @@ public class CommonMethods extends PageInitializers {
 
     public static void getErrorMsg(WebElement element){
         System.out.println(element.getText());
+    }
+
+    public static void verifyLinkActive(String linkUrl) {
+
+        WebDriver driver=new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get(linkUrl);
+
+        List<WebElement> links=driver.findElements(By.tagName("a"));
+
+        System.out.println("Total links are "+links.size());
+
+        for(int i=0;i<links.size();i++)
+        {
+
+            WebElement ele= links.get(i);
+
+            String url=ele.getAttribute("href");
+
+            verifyLinkActive(url);
+
+        }
+        try {
+            URL url = new URL(linkUrl);
+
+            HttpURLConnection httpURLConnect=(HttpURLConnection)url.openConnection();
+
+            httpURLConnect.setConnectTimeout(3000);
+
+            httpURLConnect.connect();
+
+            if(httpURLConnect.getResponseCode()==200) {
+                System.out.println(linkUrl+" - "+httpURLConnect.getResponseMessage());
+            }
+            if(httpURLConnect.getResponseCode()==HttpURLConnection.HTTP_NOT_FOUND) {
+                System.out.println(linkUrl+" - "+httpURLConnect.getResponseMessage() + " - "+ HttpURLConnection.HTTP_NOT_FOUND);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

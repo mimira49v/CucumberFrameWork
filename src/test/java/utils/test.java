@@ -1,5 +1,6 @@
 package utils;
 
-public class test {
+public class test extends CommonMethods{
 
-    }
+
+}

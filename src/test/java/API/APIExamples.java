@@ -13,7 +13,7 @@ import static io.restassured.RestAssured.*;
 public class APIExamples {
 //set the base uri
     String baseURI = RestAssured.baseURI = "http://hrm.syntaxtechs.net/syntaxapi/api";
-    String Token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTc2MDE1OTcsImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTY1NzY0NDc5NywidXNlcklkIjoiMzc3MiJ9.pNtirduQGXvCkujNYJfRDN5pvMvzdjT_O00IN3uyguI";
+    String Token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjkzMTYwNjIsImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTY2OTM1OTI2MiwidXNlcklkIjoiMzc3MiJ9.op2RS6aEJBh3M65hwZ_xd0A1N1dyR9EGmWRHWEo0-bw";
 
 //create an Employee in SyntaxHRMS
     @Test
@@ -33,6 +33,8 @@ public class APIExamples {
         JsonElement json_element = new JsonParser().parse(response.asString());
         JsonObject json_data = json_element.getAsJsonObject();
         JsonElement key_message = json_data.get("Message");
+        String message = key_message.getAsString();
+        System.out.println("Stored in string : " + message);
         System.out.println(key_message);
         JsonElement Employee = json_data.get("Employee");
         System.out.println(Employee);
