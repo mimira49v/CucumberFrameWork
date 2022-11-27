@@ -46,4 +46,57 @@ public class APIPayLoadConstants {
 
         return obj.toString(); // we are using to string cuz we declared it in the method header!
     }
-}
+    public static String jsonPractice() {
+        return "{\n" +
+                "\n" +
+                "\t\"dashboard\": {\n" +
+                "\n" +
+                "\t\t\"purchaseAmount\": 910,\n" +
+                "\n" +
+                "\t\t\"website\": \"rahulshettyacademy.com\"\n" +
+                "\n" +
+                "\t},\n" +
+                "\n" +
+                "\t\"courses\": [\n" +
+                "\n" +
+                "\t\t{\n" +
+                "\n" +
+                "\t\t\t\"title\": \"Selenium Python\",\n" +
+                "\n" +
+                "\t\t\t\"price\": 50,\n" +
+                "\n" +
+                "\t\t\t\"copies\": 6\n" +
+                "\n" +
+                "\t\t},\n" +
+                "\n" +
+                "\t\t{\n" +
+                "\n" +
+                "\t\t\t\"title\": \"Cypress\",\n" +
+                "\n" +
+                "\t\t\t\"price\": 40,\n" +
+                "\n" +
+                "\t\t\t\"copies\": 4\n" +
+                "\t\t},\n" +
+                "\t\t{\n" +
+                "\t\t\t\"title\": \"RPA\",\n" +
+                "\n" +
+                "\t\t\t\"price\": \"45\",\n" +
+                "\n" +
+                "\t\t\t\"copies\": \"5\"\n" +
+                "\t\t}\n" +
+                "\t]\n" +
+                "}";
+
+    }
+
+    public static String API_Example(){
+        return "{\n" +
+                "  \"emp_firstname\": \"mi32sdran22\",\n" +
+                "  \"emp_lastname\": \"dafafadf22222\",\n" +
+                "  \"emp_middle_name\": \"MSS\",\n" +
+                "  \"emp_gender\": \"M\",\n" +
+                "  \"emp_birthday\": \"2009-06-11\",\n" +
+                "  \"emp_job_title\": \"EMPLOYED\",\n" +
+                "  \"emp_status\": \"QA\"\n" +
+                "}";
+    }}

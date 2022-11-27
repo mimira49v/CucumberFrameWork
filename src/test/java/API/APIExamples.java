@@ -4,32 +4,44 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import org.junit.Test;
+import utils.APIConstants;
+import utils.APIPayLoadConstants;
+
 import static io.restassured.RestAssured.*;
+import static utils.RawToJson.rawToJson;
 
 public class APIExamples {
-//set the base uri
-    String baseURI = RestAssured.baseURI = "http://hrm.syntaxtechs.net/syntaxapi/api";
-    String Token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjkzMTYwNjIsImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTY2OTM1OTI2MiwidXNlcklkIjoiMzc3MiJ9.op2RS6aEJBh3M65hwZ_xd0A1N1dyR9EGmWRHWEo0-bw";
 
-//create an Employee in SyntaxHRMS
+    String baseURI = RestAssured.baseURI = "http://hrm.syntaxtechs.net/syntaxapi/api";
+
+//  create an Employee in SyntaxHRMS
+
     @Test
     public void createAnEmployee(){
-        RequestSpecification request=given().header("Content-Type", "application/json").header("Authorization",Token).body("{\n" +
-                "  \"emp_firstname\": \"mi32sdran22\",\n" +
-                "  \"emp_lastname\": \"dafafadf22222\",\n" +
-                "  \"emp_middle_name\": \"MSS\",\n" +
-                "  \"emp_gender\": \"M\",\n" +
-                "  \"emp_birthday\": \"2009-06-11\",\n" +
-                "  \"emp_job_title\": \"EMPLOYED\",\n" +
-                "  \"emp_status\": \"QA\"\n" +
-                "}");
+        RequestSpecification request = given()
+                                      .header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE)
+                                      .header(APIConstants.HEADER_AUTHORIZATION,JWT.JWT_GENERATED())
+                                      .body(APIPayLoadConstants.API_Example());
+
         Response response = request.post("/createEmployee.php");
+
+//      PRACTICE CODE
+
+        String res = response.asPrettyString();
 //  UNDERSTANDING GSON to decode json object
         // jsonElement -> json Object
+        JsonPath js1 = rawToJson(res);
+        System.out.println(res);
+//      Extracting employee ID from JsonObject
+        String employee_id = js1.getString("Employee.employee_id");
+        System.out.println("EMPLOYE ID : " + employee_id);
+//      =======================================================================
+        System.out.println("=======================================================================");
         JsonElement json_element = new JsonParser().parse(response.asString());
         JsonObject json_data = json_element.getAsJsonObject();
         JsonElement key_message = json_data.get("Message");

@@ -1,0 +1,117 @@
+INTRODUCING MYSELF:
+
+Hello, Mr/Mrs……… thank you so much for your time today.
+My name is Milos and I have been a QA Automation Engineer for about 5 years.
+I have experience in automation started off in manual testing. I have mostly been working in Agile projects,
+but I am also familiar with waterfall.
+Throughout my career I have worked on different types of applications such as hospitality, hr and banking.
+I started off as a manual tester where I refined my understanding of the SDLC(Software Development Life Cycle)
+and STLC(Software Testing Life Cycle) processes and my SQL skills.
+Later on i decided to switch my career towards the automation testing and really fall for it.
+As an Automation Engineer I have successfully developed framework and
+worked on existing framework such as DataDriven and Hybrid Framework using BDD(Behavior Driven Development)
+with POM(Page Object Model) which was a big part on my current project since we used a lot of pages and had problems organizing webElements.
+
+ABOUT THE PROJECT
+
+Currently, I am working in Nationwide on an internal HRMS system that has 2 main user interfaces i.e., Admin and ESS.
+The ESS site deals with the employee's end where they can be able to see all of their related information
+that HR has access to including their leaves left, their paychecks, and other related information.
+On the other hand, the admin has complete access to the application where they can make alterations
+where they see fit while the ESS only has limited access to the application.
+It was important that only admin had the access to the important employee information
+to ensure the confidentially and validity of employee information. We only gave access
+to the admin interface to make changes and view all information.
+Our application is based on data center. And we have customer folders there .
+(Talking about bug fix)And to check those we do have user accounts which is called c accounts to test it and as A normal
+user I was able to see other customers information that was a huge security issue.
+
+As an automation engineer, my responsibilities are to automate the regression suite for the application.
+I have done automation using Selenium Web driver and Java is the main programming language.
+I am also involved in API testing using Postman.
+We use Jenkins as the continuous integration tool and GitHub to store our source code.
+This project has been conducted under the Maven Cucumber framework.
+As a testing team, our workflow looks like this:
+
+- Selected maximum Test scenarios for Automation based on user stories
+- Start automation with a maven project based on a hybrid model
+- Creating different Framework components for automation
+- We use Selenium and Java conducting Test Automation tools to execute all Test Cases which are prepared based on User stories.
+
+We have 9 people:
+Scrum master , Architect, 5 devs 3 testers one is manual and we are two automation and my college is a lead and i respond to him
+when it comes to reports and bug fixes.
+
+For regression 180 features with around 700 scenarios and can be executed in 3 hours.
+
+Smoke-my smoke suite I have around 12-25 scenarios that are executed within 10-15 mins. Runner.exe also creates a nice result file with the test cases details execution. Jenkins sends the smoke test result to the entire team members and in case of issues, developers can look into that immediately.
+
+Regression- Currently in my project we have almost 180 features that consist of around 700 scenarios from which close to 75%-80% are automated.
+Can be executed in 3-4 h
+Numbers above are just examples and will be based on the project and also how long have you been on that project.
+
+Smoke is light test suit to confirm that application is stable
+That the existing functionality works as expected
+
+======================= KICKOFF MEATING ======================
+
+A product feature kickoff is a meeting in which a product manager and relevant stakeholders set plans, goals, and responsibilities for the team's work on a new feature. For most organizations, the product feature kickoff is the event that marks the company's official start date for the feature's development.
+
+Best solution is on 2 testers double amount of developers
+
+Ideal duration for sprint planning = in between 2-3 hours(we have to understand the user stories so this takes time)
+
+Daily stand up 10:15 AM ( 15 min lasts)
+        we discuss 3 points :
+                what you did yesterday
+                what is the plan for today
+                is there any blockers
+
+Last day of the sprint it is sprint retrospective
+
+Test suit that holds all the test cases is called regression(all the test  ases)
+Smoke testing - some test cases not all test cases
+Functional testing - we are dealing with fuctionality
+Api test cases
+Regression testing - all test cases always come up with a decent amount of numbers
+                   - if they ask how long it takes 4-5 hours
+
+15 sprint = executing 5 test cases
+
+Data Structures
+
+LinkedHashSet - saves the insertion order
+              - removes duplicates
+              - slower performance
+
+HashSet - unique elements only
+        - doesn't maintain the insertion order
+
+ ****** Smoke and regression most important to know make sure you know those two *********
+
+We should prefer local variables cuz they occupy the memory for a shorter time
+Instance variables we should use when we gonna go with multiple methods meaning share it between two or more methods or if i know that all the objects of this class might have a different values later on.
+
+Primary key :
+   is a special column in data base table that we can use to identify the records
+   and always have unique numbers.
+   We can identify rows in data table through primary key.
+
+Order by close sorts the data based on any column in the data table.
+
+<> - different way of writing not operator.
+
+Difference btwn where and having clause
+
+Have you enabled the rollback on delete function in sql? SQL Question to manager.
+First select all and make sure that these are the rows you want to delete.
+
+
+Change request if it is bugs are CR - Feature request is enhancement.
+
+Difference btwn SET and LIST: In list allows duplicates and in set they are not allowed.
+
+selectDD by textToSelect , index
+switchToFrame String name or id or WebElement.
+
+
