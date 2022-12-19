@@ -46,7 +46,7 @@ public class APIPayLoadConstants {
 
         return obj.toString(); // we are using to string cuz we declared it in the method header!
     }
-    public static String jsonPractice() {
+    public static String jsonPractice(String isbn, String aisle) {
         return "{\n" +
                 "\n" +
                 "\t\"dashboard\": {\n" +
@@ -100,3 +100,31 @@ public class APIPayLoadConstants {
                 "  \"emp_status\": \"QA\"\n" +
                 "}";
     }}
+
+/*
+
+{
+    "dashboard": 910,
+    "website": "rahulshettyacademy.com
+    },
+    "courses":{
+        "title": "Selenium Python"
+        "price": 50,
+        "copies": 6
+        }.
+        {
+        "title": "Cypress"
+        "price": 40,
+        "copies": 4
+        },
+        {
+        "title": "RPA"
+        "price": 45,
+        "copies": 10
+        }
+    }
+    }
+
+
+
+ */

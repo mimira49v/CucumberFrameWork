@@ -33,7 +33,7 @@ public class APIExamples {
 //      PRACTICE CODE
 
         String res = response.asPrettyString();
-//  UNDERSTANDING GSON to decode json object
+//      UNDERSTANDING GSON to decode json object
         // jsonElement -> json Object
         JsonPath js1 = rawToJson(res);
         System.out.println(res);
@@ -42,20 +42,28 @@ public class APIExamples {
         System.out.println("EMPLOYE ID : " + employee_id);
 //      =======================================================================
         System.out.println("=======================================================================");
-        JsonElement json_element = new JsonParser().parse(response.asString());
-        JsonObject json_data = json_element.getAsJsonObject();
+
+        JsonElement jsonObject = new JsonParser().parse(response.asString());
+        System.out.println(jsonObject);
+
+        JsonObject json_data = jsonObject.getAsJsonObject();
         JsonElement key_message = json_data.get("Message");
         String message = key_message.getAsString();
         System.out.println("Stored in string : " + message);
         System.out.println(key_message);
+
         JsonElement Employee = json_data.get("Employee");
-        System.out.println(Employee);
+        System.out.println("JsonElement employees : "+Employee);
+
         JsonObject Employee_details = Employee.getAsJsonObject();
         JsonElement name;
+        String empid = String.valueOf(Employee_details.get("emp_firstname"));
+        System.out.println(empid);
+
         System.out.println(name=Employee_details.get("emp_firstname"));
         System.out.println(Employee_details.get("emp_firstname"));
         System.out.println(Employee_details.get("emp_middle_name"));
-        System.out.println(Employee_details.get("emp_birthday"));
+        System.out.println(Employee_details.get("emp_job_title"));
 
         Assert.assertEquals(Employee, Employee_details);
     }

@@ -5,7 +5,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;       // added this line 28 it's not a part of the original framework
 import steps.PageInitializers;
@@ -21,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class CommonMethods extends PageInitializers {
 
     public static WebDriver driver;
-
     public void openBrowserAndLunchApplication(){
         ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
         switch (ConfigReader.getPropertyValue("browser")){
@@ -55,6 +53,11 @@ public class CommonMethods extends PageInitializers {
     public static WebDriverWait getWait(){
         WebDriverWait wait = new WebDriverWait(driver, Constants.EXPLICIT_WAIT);
         return wait;
+    }
+
+    public static void Alert_handling(WebElement element){
+         element = driver.findElement(By.id("alert"));
+         driver.switchTo().alert().dismiss();
     }
 
     public static void waitForClickability(WebElement element){

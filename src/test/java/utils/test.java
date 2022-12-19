@@ -1,47 +1,25 @@
 package utils;
 
-import io.restassured.path.json.JsonPath;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.testng.annotations.Test;
+
+import java.io.File;
+
+
+import static io.restassured.RestAssured.given;
+
 public class test extends CommonMethods {
-    public static void main(String[] args) {
-        JsonPath js = new JsonPath(APIPayLoadConstants.jsonPractice());
-        int count = js.getInt("courses.size()");
-//      System.out.println(count);
-        int totalAmount = js.getInt("dashboard.purchaseAmount");
-//      System.out.println(totalAmount);
-        String title = js.get("courses[0].title");
-        System.out.println(title);
-        System.out.println("======================");
+    @Test
+    public void uploadFile() {
+        File testUploadFile = new File("C:\\Users\\mileu\\IdeaProjects\\CucumberFrameWork\\src\\test\\resources\\sssssss.JPG");
+        RestAssured.baseURI = "hrm.syntaxtechs.net/syntaxapi/api";
 
-        for (int i = 0; i < count; i++) {
-            String courseTtitles = js.get("courses[" + i + "].title");
-            System.out.println(courseTtitles + " " );
-            System.out.println(js.get("courses[" + i + "].price").toString());
-        }
-        for (int i = 0; i < count; i++) {
-            String courseTtitles = js.get("courses[" + i + "].title");
+        Response response = given().multiPart("image", testUploadFile).when().
+                                post("/createEmployee.php");
 
-            if(courseTtitles.equalsIgnoreCase("Selenium Python")) {
-
-                String copies = js.get("courses[" + i + "].copies").toString();
-
-                System.out.println("How many copies did we sold :  " + copies);
-                break;
-            }
-        }
-
-        System.out.println("__________________________________");
-
-        int sum = 0;
-        for (int i = 0; i < count; i++) {
-
-            int price = js.getInt("courses[" + i + "].price");
-            int copies = js.getInt("courses[" + i + "].copies");
-            int amount = price * copies;
-            String courseTtitles = js.get("courses[" + i + "].title");
-            System.out.println(courseTtitles + " HAS SOLD : " + amount + "$");
-            sum = sum + amount;
-        }
-        System.out.println("__________________________________");
-        System.out.println("TOTAL : " + sum + "$");
     }
 }

@@ -2,6 +2,7 @@ package APISteps;
 
 import com.google.gson.JsonParser;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
@@ -9,37 +10,26 @@ import org.testng.annotations.Test;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 
 import static utils.CommonMethods.driver;
 
 public class practice {
-
-    @Test(dataProvider="dp")
-    void login(String data){
-        String[] users =data.split(",");
-        driver.get("https://demo.nopcommerce.com/login");
-        driver.findElement(By.id("Email")).sendKeys(users[0]);
-        driver.findElement(By.id("Password")).sendKeys(users[1]);
-        driver.findElement(By.xpath("//input[@class='button-1 login-button]")).click();
-    }
-
-    @DataProvider(name="dp")
-    public String[][] readJson() throws IOException {
-        JsonParser jsonParser = new JsonParser();
-        FileReader reader = new FileReader("src/test/resources/testdata/responseJSON");
-        Object obj = jsonParser.parse(reader);
-        JSONObject userLoginsJsonObj = (JSONObject) obj;
-        JSONArray userLoginsArray = (JSONArray) userLoginsJsonObj.get("userlogins");
-
-        String arr[]=new String[userLoginsArray.length()];
-
-        for(int i=0; i<userLoginsArray.length(); i++){
-            JSONObject users = (JSONObject) userLoginsArray.get(i);
-            String user = (String) users.get("username");
-            String pwd = (String) users.get("password");
-
-            arr[i]=user+" , "+pwd;
+    public static void main(String[] args) {
+        String json = "{ \"data\": { \"current_condition\": [ {\"cloudcover\": \"75\", \"humidity\": \"71\", \"observation_time\": \"06:55 AM\", \"precipMM\": \"0.6\", \"pressure\": \"1009\", \"temp_C\": \"32\", \"temp_F\": \"90\", \"visibility\": \"10\", \"weatherCode\": \"116\", \"weatherDesc\": [ {\"value\": \"Partly Cloudy\" } ], \"weatherIconUrl\": [ {\"value\": \"http:\\/\\/cdn.worldweatheronline.net\\/images\\/wsymbols01_png_64\\/wsymbol_0002_su‌​nny_intervals.png\" } ], \"winddir16Point\": \"S\", \"winddirDegree\": \"170\", \"windspeedKmph\": \"9\", \"windspeedMiles\": \"6\" } ]}}";
+        try {
+            JSONObject jObj = new JSONObject(json);
+            JSONObject dataResult = jObj.getJSONObject("data");
+            JSONArray jArr = (JSONArray) dataResult.getJSONArray("current_condition");
+            for (int i = 0; i < jArr.length(); i++) {
+                JSONObject innerObj = jArr.getJSONObject(i);
+                for (Iterator it = innerObj.keys(); it.hasNext(); ) {
+                    String key = (String) it.next();
+                    System.out.println(key + ":" + innerObj.get(key));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return new String[][]{arr};
     }
 }
