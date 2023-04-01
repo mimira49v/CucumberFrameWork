@@ -41,7 +41,7 @@ public class HardCodedExamples {
         response.then().assertThat().body("Employee.emp_firstname", equalTo("mil222os"));
 //      using jsonPath(), to specify the key in the body so that it returns the value against it.
         employee_id = response.jsonPath().getString("Employee.employee_id");
-            System.out.println(employee_id);
+        System.out.println(employee_id);
 
 //                    if you are not looking for the key in the right place it will give you null values :
 //                    if you only pass on line 34 :  emp_firstname

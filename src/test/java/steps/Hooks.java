@@ -32,25 +32,4 @@ public class Hooks extends CommonMethods {
         scenario.attach(pic, "image/png", scenario.getName());
         tearDown();
     }
-
-    @DataProvider(name = "db")
-    public String [] readJson() throws IOException, ParseException {
-        JsonParser jsonParser = new JsonParser();
-        FileReader reader = new FileReader("testdata/responseJSON");
-        Object obj = jsonParser.parse(reader);
-
-        JSONObject userLoginsJsonObj = (JSONObject) obj;
-        JSONArray userLoginArray = (JSONArray) userLoginsJsonObj.get("userlogins");
-
-        String[] arr = new String[userLoginArray.length()];
-
-        for (int i = 0; i < userLoginArray.length(); i++) {
-            JSONObject users = (JSONObject) userLoginArray.get(i); // extracting the first element(JSONObject)
-            String user = (String) users.get("username");
-            String pwd = (String) users.get("password");
-
-            arr[i] = user + " , " + pwd;
-        }
-        return arr;
-    }
 }

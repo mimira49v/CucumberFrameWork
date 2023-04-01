@@ -14,7 +14,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 
 public class APIAssingment {
-    public static void main(String[] args) {
+    public static Map<Integer, List<Integer>> main(String[] args) {
         String baseURI = RestAssured.baseURI = "https://jsonmock.hackerrank.com/api/transactions/search?txnType=debit&page=5";
         RequestSpecification preparedRequest = given().header("Content-Type", "application/json");
         Response response = preparedRequest.when().get();
@@ -26,20 +26,19 @@ public class APIAssingment {
         System.out.println(alldata);
         JsonArray arrayofdata = alldata.getAsJsonArray();
         int sizeofData = arrayofdata.size();
-        System.out.println(sizeofData);
+        System.out.println("Size of data : " + sizeofData);
         Map<Integer, List<Integer>> listList = new LinkedHashMap();
         List<Integer> innerList = new ArrayList<>();
         for (int i = 0; i < sizeofData; i++) {
             JsonElement userInfo = arrayofdata.get(i);
             JsonObject usersInfo = userInfo.getAsJsonObject();
             int userID = usersInfo.get("userId").getAsInt();
-//          System.out.println(userID);
+//          System.out.print(userID);
             String trans = usersInfo.get("amount").getAsString().replaceAll("[,$]", "");
             Integer transcationAmount = (int) Double.parseDouble(trans);
 //          System.out.println(transcationAmount);
             String transactionType = usersInfo.get("txnType").getAsString();
             if (transactionType.equals("debit")) {
-//              System.out.println(transactionType);
                 List<Integer> inner = listList.get(userID);
                 if (inner != null) {
                     inner.add(transcationAmount);
@@ -50,6 +49,12 @@ public class APIAssingment {
                     listList.put(userID, arr);
                 }
             }
+            for (Map.Entry<Integer, List<Integer>> entry : listList.entrySet()) {
+                System.out.println("User ID: " + entry.getKey());
+                System.out.println("Transaction Amounts: " + entry.getValue());
+                System.out.println("------------------------------");
+            }
         }
+        return listList;
     }
 }

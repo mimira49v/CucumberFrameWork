@@ -25,8 +25,8 @@ public class APIWorkFlowSteps {
     @Given("a request is prepared to create an employee")
     public void a_request_is_prepared_to_create_an_employee() {
         request = given().header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE).
-                      header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
-                            body(APIPayLoadConstants.createEmployeePayLoad());
+                  header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
+                  body(APIPayLoadConstants.createEmployeePayLoad());
 
     }
 
