@@ -7,6 +7,8 @@ import com.google.gson.JsonParser;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 
 public class APIAssingment {
-    public static Map<Integer, List<Integer>> main(String[] args) {
+    public static void main(String[] args) {
         String baseURI = RestAssured.baseURI = "https://jsonmock.hackerrank.com/api/transactions/search?txnType=debit&page=5";
         RequestSpecification preparedRequest = given().header("Content-Type", "application/json");
         Response response = preparedRequest.when().get();
@@ -49,12 +51,11 @@ public class APIAssingment {
                     listList.put(userID, arr);
                 }
             }
-            for (Map.Entry<Integer, List<Integer>> entry : listList.entrySet()) {
-                System.out.println("User ID: " + entry.getKey());
-                System.out.println("Transaction Amounts: " + entry.getValue());
-                System.out.println("------------------------------");
-            }
         }
-        return listList;
+        for (Map.Entry<Integer, List<Integer>> entry : listList.entrySet()) {
+            System.out.println("User ID: " + entry.getKey());
+            System.out.println("Transaction Amounts: " + entry.getValue());
+            System.out.println("------------------------------");
+        }
     }
 }

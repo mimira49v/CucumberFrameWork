@@ -65,6 +65,6 @@ public class serializeTest {
         JsonElement st = json_data.get("status");
         String actual_status = st.getAsString();
 
-        Assert.assertEquals("TEST FAILED",actual_status,status);
+        Assert.assertEquals(actual_status,status);
     }
 }

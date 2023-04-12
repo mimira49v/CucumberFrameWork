@@ -18,9 +18,9 @@ public class JsonPractice {
     @Test
     public void createAnEmployee() {
         RequestSpecification request = given()
-                .header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE)
-                .header(APIConstants.HEADER_AUTHORIZATION, JWT.JWT_GENERATED())
-                .body(APIPayLoadConstants.API_Example());
+                                        .header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE)
+                                        .header(APIConstants.HEADER_AUTHORIZATION, JWT.JWT_GENERATED())
+                                        .body(APIPayLoadConstants.API_Example());
 
         Response response = request.post("/createEmployee.php");
 
