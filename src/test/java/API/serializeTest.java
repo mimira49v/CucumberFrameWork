@@ -22,6 +22,7 @@ public class serializeTest {
 
     public static String status;
     public static String id;
+    public static String scope;
 
     public static void main(String[] args) {
 
@@ -59,12 +60,20 @@ public class serializeTest {
 
         status = "OK";
         id = "6b686ac85d7e9e5237cff36e95edde2c";
+        scope = "APP";
 
         JsonElement jsonObject = new JsonParser().parse(res.asString());
         JsonObject json_data = jsonObject.getAsJsonObject();
         JsonElement st = json_data.get("status");
         String actual_status = st.getAsString();
 
+        JsonElement sc = json_data.get("scope");
+        String actual_scope = sc.getAsString();
+
         Assert.assertEquals(actual_status,status);
+        System.out.println("STATUS VERIFYED");
+
+        Assert.assertEquals(actual_scope,scope);
+        System.out.println("SCOPE VERIFYED");
     }
 }

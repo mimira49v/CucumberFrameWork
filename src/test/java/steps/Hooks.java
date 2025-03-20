@@ -1,17 +1,7 @@
 package steps;
-
-
-import com.google.gson.JsonParser;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.testng.annotations.DataProvider;
+import io.cucumber.java.*;
 import utils.CommonMethods;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
+
 
 public class Hooks extends CommonMethods {
     //  needs to be imported from cucumber not org.java

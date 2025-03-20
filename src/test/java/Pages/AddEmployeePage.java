@@ -39,6 +39,7 @@ public class AddEmployeePage extends CommonMethods {
 
     @FindBy(xpath = "//div[@id='profile-pic']//child::h1")
     public WebElement emplVerify;
+
     public AddEmployeePage(){
         PageFactory.initElements(driver, this);
     }

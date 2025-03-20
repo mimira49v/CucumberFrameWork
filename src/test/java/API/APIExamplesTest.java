@@ -15,7 +15,7 @@ import utils.APIPayLoadConstants;
 import static io.restassured.RestAssured.*;
 import static utils.RawToJson.rawToJson;
 
-public class APIExamples {
+public class APIExamplesTest {
 
     String baseURI = RestAssured.baseURI = "http://hrm.syntaxtechs.net/syntaxapi/api";
 

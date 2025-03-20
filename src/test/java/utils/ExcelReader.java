@@ -13,8 +13,8 @@ import java.util.Map;
 
 public class ExcelReader {
 
-    static Workbook book;
-    static Sheet sheet;
+    private static Workbook book;
+    private static Sheet sheet;
 
     public static void openExcel(String filePath) {
 //      opened the file

@@ -36,8 +36,8 @@ public class LoginSteps extends CommonMethods {
     @When("user enters invalid username and password")
     public void user_enters_invalid_username_and_password() {
         //  LoginPage login = new LoginPage();
-        //    WebElement usernamefield = driver.findElement(By.id("txtUsername"));
-//        usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
+        //  WebElement usernamefield = driver.findElement(By.id("txtUsername"));
+        //  usernamefield.sendKeys(ConfigReader.getPropertyValue("username"));
         sendText(login.usernameBox, "tts12345");
         //  WebElement passwordField = driver.findElement(By.name("txtPassword"));
         sendText(login.passwordBox, "Hum@nhrm");

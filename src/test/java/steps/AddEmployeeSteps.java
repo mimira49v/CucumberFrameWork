@@ -96,7 +96,7 @@ public class AddEmployeeSteps extends CommonMethods {
             System.out.println(mapNewEmp.get("MiddleName"));
             System.out.println(mapNewEmp.get("LastName"));
 
-//          filling all the fields from the data coming from excel file
+//          filling all the fields from the data coming from Excel file
             sendText(addEmployeePage.firstNameField, mapNewEmp.get("FirstName"));
             sendText(addEmployeePage.middleNameField, mapNewEmp.get("MiddleName"));
             sendText(addEmployeePage.lastNameField, mapNewEmp.get("LastName"));
@@ -104,7 +104,7 @@ public class AddEmployeeSteps extends CommonMethods {
 //         it will fetch the employee id from attribute
             String empIDValue= addEmployeePage.empIDLocator.getAttribute("value");
 
-//          to upload the photograph
+//          to upload the photograph : First Part is the xpath second is pic path
             sendText(addEmployeePage.photograph, mapNewEmp.get("Photograph"));
                 if(!addEmployeePage.checkBox.isSelected()){
                     click(addEmployeePage.checkBox);

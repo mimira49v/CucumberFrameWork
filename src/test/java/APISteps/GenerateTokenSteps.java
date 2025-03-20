@@ -3,6 +3,7 @@ package APISteps;
 import io.cucumber.java.en.Given;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.testng.Assert;
 import utils.APIConstants;
 import static io.restassured.RestAssured.given;
 
@@ -21,6 +22,15 @@ public class GenerateTokenSteps {
 
 
         Response response = request.when().post(APIConstants.GENERATE_TOKEN_URI);
+
+        // making sure everything is good to go before extracting the token
+        Assert.assertEquals(response.getStatusCode(), 200, "Unexpected status code!");
+        Assert.assertTrue(response.jsonPath().getString("token") != null, "Token is null!");
+
+        // in case of wrong status code or token is null
+        if (response.getStatusCode() != 200 || response.jsonPath().getString("token") == null) {
+            throw new RuntimeException("Failed to generate token: " + response.getBody().asString());
+        }
 
         token = "Bearer " + response.jsonPath().getString("token");
         System.out.println(token);

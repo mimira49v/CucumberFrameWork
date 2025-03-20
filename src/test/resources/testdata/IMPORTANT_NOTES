@@ -55,7 +55,11 @@ That the existing functionality works as expected
 
 ======================= KICKOFF MEATING ======================
 
-A product feature kickoff is a meeting in which a product manager and relevant stakeholders set plans, goals, and responsibilities for the team's work on a new feature. For most organizations, the product feature kickoff is the event that marks the company's official start date for the feature's development.
+A product feature kickoff is a meeting in which a product manager
+and relevant stakeholders set plans, goals,
+and responsibilities for the team's work on a new feature.
+For most organizations, the product feature kickoff is the event
+that marks the company's official start date for the feature's development.
 
 Best solution is on 2 testers double amount of developers
 
@@ -69,7 +73,7 @@ Daily stand up 10:15 AM ( 15 min lasts)
 
 Last day of the sprint it is sprint retrospective
 
-Test suit that holds all the test cases is called regression(all the test  ases)
+Test suit that holds all the test cases is called regression(all the test  cases)
 Smoke testing - some test cases not all test cases
 Functional testing - we are dealing with fuctionality
 Api test cases

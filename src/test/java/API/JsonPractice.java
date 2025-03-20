@@ -26,7 +26,15 @@ public class JsonPractice {
 
         String res = response.asPrettyString();
         System.out.println(res);
-//      JsonPath prints the value without ""
+
+        /*
+
+        We takes raw API response object (res) and passes it to the rawToJson method.
+        The rawToJson method converts the raw response body into a JsonPath object.
+        The JsonPath object (js1) allows us to query specific data fields from
+        the JSON response in a structured and easy way.
+
+         */
         JsonPath js1 = rawToJson(res);
         String employee_id = js1.getString("Employee.employee_id");
         System.out.println("EMPLOYE ID : " + employee_id);

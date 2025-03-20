@@ -1,23 +1,19 @@
 package utils;
 
-
-import io.cucumber.java.en.Given;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
 
 public class test {
+    private static io.restassured.RestAssured RestAssured;
 
 
 //   CREATING NESTED JSON USING HASHMAP
 
     public static void main(String[] args) {
+        RestAssured.baseURI = "http://your-api-base-url.com";
         Map<String, Object> map = new HashMap<>();
         map.put("firstName", "John");
         map.put("lastName", "Doe");

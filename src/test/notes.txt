@@ -2,8 +2,8 @@ Gherkin language
 
 Given - precondition
 When -  actions we need to perform
-And - supporting tag
-Then - then expected results
+And -   supporting tag
+Then -  then expected results
 
 ========= Recap =========
 What is framework?
