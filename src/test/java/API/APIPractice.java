@@ -12,7 +12,7 @@ public class APIPractice {
         public void addBook(String isbn,String aisle){
             RestAssured.baseURI = "http://216.10.245.166";
             Response resp = given().header("Content-Type","application/json").
-                             body(PayLoadAddBook.Addbook(isbn, aisle)).
+                            body(PayLoadAddBook.Addbook(isbn, aisle)).
                             when().post("/Library/Addbook.php").
                             then().assertThat().statusCode(200).extract().response();
             System.out.println(resp);

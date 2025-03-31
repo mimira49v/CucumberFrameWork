@@ -11,7 +11,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import utils.APIConstants;
 import utils.APIPayLoadConstants;
-
 import static io.restassured.RestAssured.*;
 import static utils.RawToJson.rawToJson;
 
