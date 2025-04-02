@@ -18,7 +18,11 @@ import org.junit.runner.RunWith;
 
         tags = "@dynamic",
 
-        plugin = {"pretty", "html:target/report/cucumber.html", "json:target/report/cucumber.json", "junit:target/report/cucumber.xml"}
+        plugin = {"pretty",
+                   "json:target/cucumber/report.json",
+                   "html:target/cucumber/report.html",
+                   "junit:target/cucumber/report.xml"
+        }
 )
 public class APIRunner {
 }
