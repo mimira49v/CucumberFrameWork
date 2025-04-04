@@ -1,12 +1,11 @@
 package runners;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
 
-    @RunWith(Cucumber.class)
-    @CucumberOptions(
+@CucumberOptions(
             // features we use to provide the path of all the feature files
             features = "src/test/resources/features/",
             // glue is where we find implementations for gherkin steps
@@ -24,6 +23,6 @@ import org.junit.runner.RunWith;
             monochrome = true,
             tags = "@db"
     )
-            public class smoke {
+            public class smoke extends AbstractTestNGCucumberTests {
     }
 

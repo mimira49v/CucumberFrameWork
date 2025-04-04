@@ -7,7 +7,7 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import utils.APIConstants;
 import utils.APIPayLoadConstants;
 import static io.restassured.RestAssured.given;

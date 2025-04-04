@@ -1,11 +1,10 @@
 package runners;
 
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
 
-@RunWith(Cucumber.class)
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+
 @CucumberOptions(
 
         features = "src/test/resources/features/",
@@ -24,5 +23,5 @@ import org.junit.runner.RunWith;
                    "junit:target/cucumber/report.xml"
         }
 )
-public class APIRunner {
+public class APIRunner extends AbstractTestNGCucumberTests {
 }

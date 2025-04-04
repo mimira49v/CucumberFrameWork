@@ -1,12 +1,11 @@
 package runners;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
 
-    @RunWith(Cucumber.class)
-    @CucumberOptions(
+@CucumberOptions(
             features = "src/test/resources/featuresPractice/",
             glue = "steps",
             dryRun = true,
@@ -20,7 +19,7 @@ import org.junit.runner.RunWith;
             }
     )
 
-    public class PracticeRunner  {
+    public class PracticeRunner extends AbstractTestNGCucumberTests {
 
     }
 

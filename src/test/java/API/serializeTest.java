@@ -6,10 +6,9 @@ import com.google.gson.JsonParser;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
+import org.testng.Assert;
 import pojo.AddPlace;
 import pojo.Location;
 

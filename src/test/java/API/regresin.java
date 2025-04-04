@@ -6,12 +6,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import utils.APIConstants;
 import java.io.IOException;
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertTrue;
 import static utils.RawToJson.rawToJson;
 
 public class regresin {

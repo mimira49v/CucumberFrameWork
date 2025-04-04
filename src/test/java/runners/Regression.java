@@ -1,10 +1,9 @@
 package runners;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
 
-@RunWith(Cucumber.class)
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+
 @CucumberOptions(
         //features we use to provide the path of all the feature files
         features = "src/test/resources/features/",
@@ -28,5 +27,5 @@ import org.junit.runner.RunWith;
         }
 )
 
-public class Regression {
+public class Regression extends AbstractTestNGCucumberTests {
 }

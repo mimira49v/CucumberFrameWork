@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
+import org.testng.Assert;
 import utils.APIConstants;
 import utils.APIPayLoadConstants;
 import java.util.List;
