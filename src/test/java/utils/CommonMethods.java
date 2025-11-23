@@ -83,7 +83,7 @@ public class CommonMethods extends PageInitializers {
             }
         }
         System.out.println(">>> Running on browser: " + browser);
-        webDriver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Constants.IMPLICIT_WAIT));
         
         // Store WebDriver in ThreadLocal before initializing page objects
         setDriver(webDriver);

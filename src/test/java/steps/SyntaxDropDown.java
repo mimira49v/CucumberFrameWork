@@ -83,4 +83,51 @@ public class SyntaxDropDown extends CommonMethods {
         WebElement successMessage = getDriver().findElement(By.xpath("//p[contains(text(), 'Form has been submit successfully')]"));
         Assert.assertTrue(successMessage.isDisplayed(), "Success message not displayed");
     }
+
+    @Given("I open the Syntax Projects radio button demo page")
+    public void i_open_the_syntax_projects_radio_button_demo_page() {
+        getDriver().get("https://syntaxprojects.com/basic-radiobutton-demo.php");
+    }
+    @When("I select {string} radio button in the Radio Button Demo section")
+    public void i_select_radio_button_in_the_radio_button_demo_section(String radioButton) {
+        WebElement radioButtonElement = getDriver().findElement(By.xpath("//input[@type='radio' and @value='" + radioButton + "' and @name='optradio']"));
+        click(radioButtonElement);
+    }
+    @When("I click on {string} button")
+    public void i_click_on_button_in_the_radio_button_demo_section(String button) {
+        WebElement buttonElement = getDriver().findElement(By.xpath("//button[contains(text(), '" + button + "')]"));
+        click(buttonElement);
+    }
+
+    @Then("I verify that the displayed value contains {string}")
+    public void i_verify_that_the_displayed_value_contains(String expectedValue) {
+        waitForPresence(By.xpath("//p[@class='radiobutton']"));
+        WebElement displayedValue = getDriver().findElement(By.xpath("//p[@class='radiobutton']"));
+        String actualValue = displayedValue.getText();
+        Assert.assertTrue(actualValue.contains(expectedValue), 
+            "Displayed value does not contain '" + expectedValue + "'. Actual value: " + actualValue);
+    }
+
+    @And("I verify that {string} radio button is not selected")
+    public void i_verify_that_radio_button_is_not_selected(String option) {
+        WebElement radioButton = getDriver().findElement(By.xpath("//input[@type='radio' and @value='" + option + "' and @name='optradio']"));
+        Assert.assertFalse(radioButton.isSelected(), 
+            "Radio button '" + option + "' should not be selected but it is selected");
+    }
+
+    @When("I attempt to select {string} radio button and verify that it is not clickable")
+    public void i_attempt_to_select_radio_button_in_the_disabled_radio_button_demo_section(String option) {
+        WebElement radioButton = getDriver().findElement(By.xpath("//input[@type='radio' and @value='gender-male' and @name='gender-identity']"));
+        Assert.assertFalse(radioButton.isEnabled(), 
+            "Radio button '" + option + "' should not be enabled but it is enabled");
+    }
+
+    @Then("I verify that no radio button is selected in the Disabled Radio Button Demo section")
+    public void i_verify_that_no_radio_button_is_selected_in_the_disabled_radio_button_demo_section() {
+        WebElement maleRadio = getDriver().findElement(By.xpath("//input[@type='radio' and @value='gender-male' and @name='gender-identity']"));
+        WebElement femaleRadio = getDriver().findElement(By.xpath("//input[@type='radio' and @value='gender-male' and @name='gender-identity']"));
+        Assert.assertFalse(maleRadio.isSelected(), "Male radio button should not be selected in Disabled section");
+        Assert.assertFalse(femaleRadio.isSelected(), "Female radio button should not be selected in Disabled section");
+    }
+    
 }
