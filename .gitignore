@@ -1,2 +1,51 @@
 # Project exclude paths
 /target/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dev-debug.log
+# Dependency directories
+node_modules/
+# Environment variables
+.env
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# OS specific
+.DS_Store
+
+# Task files
+# tasks.json
+# tasks/
+
+# AI Assistant directories and files
+.agents/
+.claude/
+.cursor/
+.roo/
+.trae/
+.taskmaster/
+.clinerules/
+.roomodes/
+.rules/
+AGENT.md
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+opencode.json
+.mcp.json
+.env.example
+package.json
+package-lock.json
+.github/
+scripts/
+screenshots/ 

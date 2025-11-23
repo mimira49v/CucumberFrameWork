@@ -23,6 +23,6 @@ public class DeltaPage extends CommonMethods {
     public WebElement searchButton;
 
     public DeltaPage(){
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(getDriver(), this);
     }
 }

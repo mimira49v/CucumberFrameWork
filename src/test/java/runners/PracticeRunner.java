@@ -3,14 +3,15 @@ package runners;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import org.testng.annotations.DataProvider;
 
 
 @CucumberOptions(
-            features = "src/test/resources/featuresPractice/",
+            features = "src/test/resources/featuresPractice/", //CUZ OF THIS EXECUTED DELTA AND SYNTAX
             glue = "steps",
-            dryRun = true,
+            dryRun = false,  // <<< this enables actual execution
             monochrome = true,
-            tags = "@SyntaxIframe",
+            // tags = "@api",
             plugin = {
                     "html:target/cucumber/report.html",
                     "pretty",
@@ -20,6 +21,10 @@ import io.cucumber.testng.CucumberOptions;
     )
 
     public class PracticeRunner extends AbstractTestNGCucumberTests {
-
+    @Override
+    @DataProvider(parallel = true)
+    public Object[][] scenarios() {
+        return super.scenarios();
     }
+}
 

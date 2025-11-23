@@ -19,8 +19,14 @@ public class DeltaAirlinesSteps extends CommonMethods {
     String departurePlaceholder;
     String destinationPlaceholder;
     String searchButtonText;
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    
+    private JavascriptExecutor getJSExecutorLocal() {
+        return (JavascriptExecutor) getDriver();
+    }
+    
+    private WebDriverWait getWaitLocal() {
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+    }
 
 
     @Given("I open Delta Airlines homepage")
@@ -34,7 +40,7 @@ public class DeltaAirlinesSteps extends CommonMethods {
 
 
         // Wait for the departure field to be present
-        deltaPage.departureField = wait.until(ExpectedConditions.presenceOfElementLocated
+        deltaPage.departureField = getWaitLocal().until(ExpectedConditions.presenceOfElementLocated
                                         (By.xpath("//span[@class='calenderDepartSpan']")));
 
         // Extract the text from the element
@@ -74,7 +80,7 @@ public class DeltaAirlinesSteps extends CommonMethods {
 
     @When("I scroll down using the Action Class")
     public void iScrollDownUsingTheActionClass() {
-        Actions actions = new Actions(driver);
+        Actions actions = new Actions(getDriver());
         actions.scrollByAmount(0, 500).perform(); // scroll down 500 pixels
         System.out.println("Scrolled down using action class");
         
@@ -82,21 +88,21 @@ public class DeltaAirlinesSteps extends CommonMethods {
 
     @And("I scroll to a specific element using JavaScript Executor")
     public void iScrollToASpecificElementUsingJavaScriptExecutor() {
-        WebElement element = driver.findElement(By.xpath("//a[@class='search-text']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        WebElement element = getDriver().findElement(By.xpath("//a[@class='search-text']"));
+        getJSExecutorLocal().executeScript("arguments[0].scrollIntoView(true);", element);
         element.sendKeys("flights");
 
     }
 
     @And("I scroll to the bottom of the page using JavaScript")
     public void iScrollToTheBottomOfThePageUsingJavaScript() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
                 .executeScript("return document.readyState").equals("complete"));
 
-        WebElement element = driver.findElement(By.xpath("//h3[contains(text(), 'Popular Topics')]"));
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        WebElement element = getDriver().findElement(By.xpath("//h3[contains(text(), 'Popular Topics')]"));
+        getJSExecutorLocal().executeScript("arguments[0].scrollIntoView(true);", element);
 
         System.out.println("Scrolled to 'Popular Topics' section using JavaScript Executor");
     }
@@ -104,7 +110,7 @@ public class DeltaAirlinesSteps extends CommonMethods {
     @Then("I validate scrolling was successful")
     public void iValidateScrollingWasSuccessful() {
         
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        getJSExecutorLocal().executeScript("window.scrollTo(0, document.body.scrollHeight)");
         System.out.println("==== Successfully scrolled to the bottom of the page. ====");
     }
 }

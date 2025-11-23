@@ -14,6 +14,6 @@ public class DashboardPage extends CommonMethods {
     public WebElement welcomeMessage;
 
     public DashboardPage(){
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(getDriver(), this);
     }
 }

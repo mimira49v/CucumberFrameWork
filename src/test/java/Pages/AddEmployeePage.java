@@ -41,6 +41,6 @@ public class AddEmployeePage extends CommonMethods {
     public WebElement emplVerify;
 
     public AddEmployeePage(){
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(getDriver(), this);
     }
 }

@@ -72,7 +72,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.1.0</version>
+            <version>5.9.1</version>
         </dependency>
 
         <!-- Utilities -->
@@ -150,7 +150,7 @@
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
-                        <include>**/*RunnerClass.java</include>
+                        <include>**/*ParallelRunner.java</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>

@@ -21,6 +21,6 @@ public class LoginPage extends CommonMethods {
     public WebElement errorMsg;
 
     public LoginPage(){
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(getDriver(), this);
     }
 }

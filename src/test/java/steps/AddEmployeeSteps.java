@@ -123,7 +123,7 @@ public class AddEmployeeSteps extends CommonMethods {
             click(employeeSearchPage.searchButton);
 
 //          it is returning the data from the row in results
-            List<WebElement> rowData = driver.findElements(By.xpath("//table[@id='resultTable']/tbody/tr"));
+            List<WebElement> rowData = getDriver().findElements(By.xpath("//table[@id='resultTable']/tbody/tr"));
             for (int i = 0; i<rowData.size(); i++){
                 String rowText = rowData.get(i).getText();
                     System.out.println(rowText);

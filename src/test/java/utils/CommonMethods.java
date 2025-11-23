@@ -5,6 +5,8 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -23,41 +25,104 @@ import java.util.concurrent.TimeUnit;
 
 
 public class CommonMethods extends PageInitializers {
-    public static WebDriver driver;
+    // OLD: public static WebDriver driver;
+    // NEW: ThreadLocal for parallel execution support
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+    // Getter method - maintains backward compatibility
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    // Setter method - for setting driver in ThreadLocal
+    public static void setDriver(WebDriver webDriver) {
+        driver.set(webDriver);
+    }
+
+    // Remove driver from ThreadLocal (cleanup)
+    public static void removeDriver() {
+        driver.remove();
+    }
 
     public static WebDriver openBrowserAndLunchApplication() {
         ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
-        String browser = ConfigReader.getPropertyValue("browser").toLowerCase();
+        //String browser = ConfigReader.getPropertyValue("browser").toLowerCase();
+        String browser = System.getProperty("browser", "chrome").toLowerCase();
         boolean isRemote = Boolean.parseBoolean(ConfigReader.getPropertyValue("isRemote"));
 
+        WebDriver webDriver;
+
         if (isRemote) {
-            driver = startRemoteDriver(browser);
+            webDriver = startRemoteDriver2(browser);
         } else {
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    webDriver = new ChromeDriver();
                     break;
+
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                    webDriver = new FirefoxDriver();
                     break;
+
+                case "edge":
+                    WebDriverManager.edgedriver().setup();
+                    webDriver = new EdgeDriver();
+                    break;
+
                 case "headless-chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-                    driver = new ChromeDriver(options);
+                    webDriver = new ChromeDriver(options);
                     break;
+
                 default:
                     throw new RuntimeException("Invalid browser name: " + browser);
             }
         }
-
-        driver.get(ConfigReader.getPropertyValue("delta_url"));
-        driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        System.out.println(">>> Running on browser: " + browser);
+        webDriver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        
+        // Store WebDriver in ThreadLocal before initializing page objects
+        setDriver(webDriver);
         intializePageObjects();
 
-        return driver;
+        return webDriver;
+    }
+    public static WebDriver startRemoteDriver2(String browserType) {
+        String remoteUrl = ConfigReader.getPropertyValue("hubURL");
+        MutableCapabilities capabilities;
+
+        if (browserType.equalsIgnoreCase("chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            options.setCapability("browserName", "chrome");
+            capabilities = options;
+            System.out.println("### Remote Test Execution on Chrome");
+
+        } else if (browserType.equalsIgnoreCase("firefox")) {
+            FirefoxOptions options = new FirefoxOptions();
+            options.setCapability("browserName", "firefox");
+            capabilities = options;
+            System.out.println("### Remote Test Execution on Firefox");
+
+        } else if (browserType.equalsIgnoreCase("edge")) {
+            EdgeOptions options = new EdgeOptions();
+            options.setCapability("browserName", "MicrosoftEdge");
+            capabilities = options;
+            System.out.println("### Remote Test Execution on Edge");
+
+        } else {
+            throw new RuntimeException("Unsupported remote browser: " + browserType);
+        }
+
+        try {
+            return new RemoteWebDriver(new URL(remoteUrl), capabilities);
+        } catch (MalformedURLException e) {
+            System.out.println("Malformed hub URL: " + remoteUrl);
+            throw new RuntimeException(e);
+        }
     }
 
     public static WebDriver startRemoteDriver(String browserType) {
@@ -92,7 +157,7 @@ public class CommonMethods extends PageInitializers {
     }
 
     public static WebDriverWait getWait() {
-        return new WebDriverWait(driver, Duration.ofSeconds(10));
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(10));
     }
 
     public static void waitForClickability(WebElement element) {
@@ -105,7 +170,7 @@ public class CommonMethods extends PageInitializers {
     }
 
     public static JavascriptExecutor getJSExecutor() {
-        return (JavascriptExecutor) driver;
+        return (JavascriptExecutor) getDriver();
     }
 
     public static void jsClick(WebElement element) {
@@ -113,7 +178,7 @@ public class CommonMethods extends PageInitializers {
     }
 
     public static byte[] takeScreenshot(String fileName) {
-        TakesScreenshot ts = (TakesScreenshot) driver;
+        TakesScreenshot ts = (TakesScreenshot) getDriver();
         byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
         File sourceFile = ts.getScreenshotAs(OutputType.FILE);
         try {
@@ -131,8 +196,9 @@ public class CommonMethods extends PageInitializers {
     }
 
     public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
+        if (getDriver() != null) {
+            getDriver().quit();
+            removeDriver(); // Clean up ThreadLocal
         }
     }
 
@@ -170,7 +236,7 @@ public class CommonMethods extends PageInitializers {
 
     public void switchToFrameByNameOrID(String nameOrId) {
         try {
-            driver.switchTo().frame(nameOrId);
+            getDriver().switchTo().frame(nameOrId);
             System.out.println("Switched to frame with name or ID: " + nameOrId);
         } catch (Exception e) {
             System.out.println("Unable to switch to frame with name or ID: " + nameOrId);
@@ -180,7 +246,7 @@ public class CommonMethods extends PageInitializers {
 
     public void switchToFrameByElement(WebElement frameElement) {
         try {
-            driver.switchTo().frame(frameElement);
+            getDriver().switchTo().frame(frameElement);
             System.out.println("Switched to frame using WebElement.");
         } catch (Exception e) {
             System.out.println("Unable to switch to frame using WebElement.");
@@ -190,7 +256,7 @@ public class CommonMethods extends PageInitializers {
 
     public void switchToDefaultContent() {
         try {
-            driver.switchTo().defaultContent();
+            getDriver().switchTo().defaultContent();
             System.out.println("Switched back to the default content.");
         } catch (Exception e) {
             System.out.println("Unable to switch back to the default content.");
