@@ -53,7 +53,7 @@ public class CommonMethods extends PageInitializers {
         WebDriver webDriver;
 
         if (isRemote) {
-            webDriver = startRemoteDriver2(browser);
+            webDriver = startRemoteDriver(browser);
         } else {
             switch (browser) {
                 case "chrome":
@@ -91,66 +91,43 @@ public class CommonMethods extends PageInitializers {
 
         return webDriver;
     }
-    public static WebDriver startRemoteDriver2(String browserType) {
+
+
+    public static WebDriver startRemoteDriver(String browserType) {
         String remoteUrl = ConfigReader.getPropertyValue("hubURL");
         MutableCapabilities capabilities;
-
+    
         if (browserType.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.setCapability("browserName", "chrome");
             capabilities = options;
             System.out.println("### Remote Test Execution on Chrome");
-
         } else if (browserType.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             options.setCapability("browserName", "firefox");
             capabilities = options;
             System.out.println("### Remote Test Execution on Firefox");
-
         } else if (browserType.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();
             options.setCapability("browserName", "MicrosoftEdge");
             capabilities = options;
             System.out.println("### Remote Test Execution on Edge");
-
         } else {
             throw new RuntimeException("Unsupported remote browser: " + browserType);
         }
-
+    
         try {
-            return new RemoteWebDriver(new URL(remoteUrl), capabilities);
-        } catch (MalformedURLException e) {
-            System.out.println("Malformed hub URL: " + remoteUrl);
+            return RemoteWebDriver.builder()
+                .address(remoteUrl)
+                .oneOf(capabilities)
+                .build();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid hub URL: " + remoteUrl);
             throw new RuntimeException(e);
         }
     }
 
-    public static WebDriver startRemoteDriver(String browserType) {
-        String remoteUrl = ConfigReader.getPropertyValue("hubURL");
-        MutableCapabilities capabilities;
-
-        if (browserType.equalsIgnoreCase("chrome")) {
-            ChromeOptions options = new ChromeOptions();
-            options.setCapability("browserName", "chrome");
-            capabilities = options;
-            System.out.println("### Remote Test Execution on Chrome");
-        } else if (browserType.equalsIgnoreCase("firefox")) {
-            FirefoxOptions options = new FirefoxOptions();
-            options.setCapability("browserName", "firefox");
-            capabilities = options;
-            System.out.println("### Remote Test Execution on Firefox");
-        } else {
-            throw new RuntimeException("Unsupported remote browser: " + browserType);
-        }
-
-        try {
-            return new RemoteWebDriver(new URL(remoteUrl), capabilities);
-        } catch (MalformedURLException e) {
-            System.out.println("Malformed hub URL: " + remoteUrl);
-            throw new RuntimeException(e);
-        }
-    }
-
+    
     public static void sendText(WebElement element, String textToSend) {
         element.clear();
         element.sendKeys(textToSend);

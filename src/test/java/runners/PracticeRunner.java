@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
             glue = "steps",
             dryRun = false,  // <<< this enables actual execution
             monochrome = true,
-            // tags = "@api",
+            tags = "@SyntaxIFrame",
             plugin = {
                     "html:target/cucumber/report.html",
                     "pretty",

@@ -46,6 +46,5 @@ opencode.json
 .env.example
 package.json
 package-lock.json
-.github/
 scripts/
 screenshots/ 
