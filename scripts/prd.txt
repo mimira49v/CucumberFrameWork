@@ -1,0 +1,44 @@
+<context>
+# Overview
+We want to implement a scalable, parallel UI test automation framework using Selenium WebDriver. The tests should run in parallel across multiple browsers using a Selenium Grid setup hosted on AWS EC2 instances, with Docker containers managing the browser nodes. This will enable fast feedback and cross-browser coverage for our web application.
+
+# Core Features
+- Parallel execution of Selenium UI tests
+- Selenium Grid setup using Docker containers
+- Grid hub and nodes running on AWS EC2 instances
+- Support for Chrome, Firefox, and Edge browsers
+- Integration with CI/CD (Jenkins or GitHub Actions)
+- Automated test reporting and screenshots for failures
+
+# User Experience
+- QA engineers can trigger tests from CI/CD or locally
+- Test results and reports are easily accessible
+- Adding new tests or browsers is straightforward
+</context>
+<PRD>
+# Technical Architecture
+- Use Docker Compose to orchestrate Selenium Grid (hub + browser nodes)
+- Deploy Dockerized Selenium Grid on AWS EC2 instances (Linux)
+- Connect test runner (local or CI) to remote Selenium Grid hub
+- Store test results and screenshots in S3 (optional)
+- Use Java, Maven, and TestNG/Cucumber for test implementation
+
+# Development Roadmap
+- Phase 1: Set up Dockerized Selenium Grid locally
+- Phase 2: Provision AWS EC2 instances and deploy Selenium Grid
+- Phase 3: Configure test framework for remote execution
+- Phase 4: Implement parallel test execution
+- Phase 5: Integrate with CI/CD and reporting
+
+# Logical Dependency Chain
+- Local Docker Grid setup → AWS EC2 provisioning → Remote Grid deployment → Framework config → Parallelization → CI/CD integration
+
+# Risks and Mitigations
+- Network/firewall issues: Ensure proper security group settings on EC2
+- Docker compatibility: Use official Selenium images
+- Cost: Use spot instances or auto-shutdown scripts
+
+# Appendix
+- Reference: [Selenium Grid with Docker](https://github.com/SeleniumHQ/docker-selenium)
+- Reference: [AWS EC2 setup guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
+</PRD>s
