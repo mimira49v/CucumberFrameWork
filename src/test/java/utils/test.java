@@ -19,9 +19,9 @@ public class test {
         map.put("lastName", "Doe");
 
         // if you have a nested json you can create another map that will be for that object exp:
-        HashMap <String, Object> map2 = new HashMap<>();
-        map.put("lat", 12);
-        map.put("long", 34);
+        HashMap<String, Object> map2 = new HashMap<>();
+        map2.put("lat", 12);
+        map2.put("long", 34);
         map.put("location", map2);
 
         given().
@@ -34,3 +34,13 @@ public class test {
     }
 }
 
+
+// NESTED JSON OUTPUT
+//   {
+//     "firstName": "John",
+//     "lastName": "Doe",
+//     "location": {
+//       "lat": 12,
+//       "long": 34
+//     }
+//   }

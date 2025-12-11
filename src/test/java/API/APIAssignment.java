@@ -13,12 +13,14 @@ import java.util.List;
 import java.util.Map;
 import static io.restassured.RestAssured.given;
 
-public class APIAssingment {
+public class APIAssignment {
     public static void main(String[] args) {
-        String baseURI = RestAssured.baseURI = "https://jsonmock.hackerrank.com/api/transactions/search?txnType=debit&page=5";
-        RequestSpecification preparedRequest = given().header("Content-Type", "application/json");
+        RestAssured.baseURI = "https://jsonmock.hackerrank.com/api/transactions/search";
+        RequestSpecification preparedRequest = given()
+            .header("Content-Type", "application/json")
+            .queryParam("txnType", "debit")
+            .queryParam("page", "5");
         Response response = preparedRequest.when().get();
-        //System.out.println(response.asString());
         JsonElement jelement = new JsonParser().parse(response.asString());
         System.out.println(jelement);
         JsonObject data = jelement.getAsJsonObject();
@@ -28,7 +30,6 @@ public class APIAssingment {
         int sizeofData = arrayofdata.size();
         System.out.println("Size of data : " + sizeofData);
         Map<Integer, List<Integer>> listList = new LinkedHashMap();
-        List<Integer> innerList = new ArrayList<>();
         for (int i = 0; i < sizeofData; i++) {
             JsonElement userInfo = arrayofdata.get(i);
             JsonObject usersInfo = userInfo.getAsJsonObject();
