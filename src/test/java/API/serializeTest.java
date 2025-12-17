@@ -61,7 +61,7 @@ public class serializeTest {
         id = "6b686ac85d7e9e5237cff36e95edde2c";
         scope = "APP";
 
-        JsonElement jsonObject = new JsonParser().parse(res.asString());
+        JsonElement jsonObject = JsonParser.parseString(res.asString());
         JsonObject json_data = jsonObject.getAsJsonObject();
         JsonElement st = json_data.get("status");
         String actual_status = st.getAsString();
