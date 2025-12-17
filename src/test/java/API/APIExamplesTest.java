@@ -42,7 +42,7 @@ public class APIExamplesTest {
 //      =======================================================================
         System.out.println("=======================================================================");
 
-        JsonElement jsonObject = new JsonParser().parse(response.asString());
+        JsonElement jsonObject = JsonParser.parseString(response.asString());
         System.out.println(jsonObject);
 
         JsonObject json_data = jsonObject.getAsJsonObject();

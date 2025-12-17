@@ -21,7 +21,7 @@ public class APIAssignment {
             .queryParam("txnType", "debit")
             .queryParam("page", "5");
         Response response = preparedRequest.when().get();
-        JsonElement jelement = new JsonParser().parse(response.asString());
+        JsonElement jelement = JsonParser.parseString(response.asString());
         System.out.println(jelement);
         JsonObject data = jelement.getAsJsonObject();
         JsonElement alldata = data.get("data");

@@ -41,7 +41,7 @@ public class JsonPractice {
 
 
 //      response goes to Json OBJECT FIRST!!!
-        JsonObject jsonObject = (JsonObject) new JsonParser().parse(res.toString());
+        JsonObject jsonObject = (JsonObject) JsonParser.parseString(res.toString());
         JsonObject json_data = jsonObject.getAsJsonObject();
         JsonElement Employee = json_data.get("Employee");
         JsonObject Employee_details = Employee.getAsJsonObject();
