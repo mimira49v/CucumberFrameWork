@@ -1,0 +1,64 @@
+{
+  "customers": [
+    {
+      "id": "customer1",
+      "name": "Tim Cook Jr",
+      "email": "tim.cook.test@apple.com",
+      "gender": "male",
+      "status": "active",
+      "role": "Executive"
+    },
+    {
+      "id": "customer2",
+      "name": "Steve Jobs Jr",
+      "email": "steve.jobs.test@apple.com",
+      "gender": "male",
+      "status": "active",
+      "role": "Innovator"
+    },
+    {
+      "id": "customer3",
+      "name": "Jony Ive Jr",
+      "email": "jony.ive.test@apple.com",
+      "gender": "male",
+      "status": "active",
+      "role": "Designer"
+    },
+    {
+      "id": "customer4",
+      "name": "Lisa Jackson",
+      "email": "lisa.jackson.test@apple.com",
+      "gender": "female",
+      "status": "active",
+      "role": "Environmental Lead"
+    },
+    {
+      "id": "default",
+      "name": "John Appleseed",
+      "email": "john.appleseed.test@apple.com",
+      "gender": "male",
+      "status": "active",
+      "role": "Standard User"
+    }
+  ],
+  "products": [
+    {
+      "name": "iPhone 15 Pro Max",
+      "sku": "MU773LL/A",
+      "price": 1199.00,
+      "category": "iPhone"
+    },
+    {
+      "name": "MacBook Pro 16",
+      "sku": "Z15G001HV",
+      "price": 3999.00,
+      "category": "Mac"
+    },
+    {
+      "name": "AirPods Pro 2",
+      "sku": "MTJV3AM/A",
+      "price": 249.00,
+      "category": "Audio"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+customerId,name,email,gender,status,role
+customer1,Tim Cook Jr,tim.cook.test@apple.com,male,active,Executive
+customer2,Steve Jobs Jr,steve.jobs.test@apple.com,male,active,Innovator
+customer3,Jony Ive Jr,jony.ive.test@apple.com,male,active,Designer
+customer4,Lisa Jackson,lisa.jackson.test@apple.com,female,active,Environmental Lead
+default,John Appleseed,john.appleseed.test@apple.com,male,active,Standard User
