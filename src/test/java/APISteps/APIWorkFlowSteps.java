@@ -51,6 +51,9 @@ public class APIWorkFlowSteps {
     @Then("the employee id {string} is stored as a global variable to be used for other calls")
     public void the_employee_id_is_stored_as_a_global_variable_to_be_used_for_other_calls(String empId) {
         employee_id = response.jsonPath().getString(empId);
+        if (employee_id == null) {
+            employee_id = response.jsonPath().getString("bookingid");
+        }
         System.out.println(employee_id);
 
     }
@@ -61,7 +64,7 @@ public class APIWorkFlowSteps {
     public void a_request_is_prepared_to_get_the_employee() {
         request = given().header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE).
                       header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
-                            queryParam("employee_id", employee_id);
+                            pathParam("id", employee_id);
 
     }
 
@@ -81,6 +84,9 @@ public class APIWorkFlowSteps {
     public void the_employee_we_are_getting_having_id_must_match_with_the_globally_stored_employee_id
             (String empID) {
         String tempID = response.jsonPath().getString(empID);
+        if (tempID == null) {
+            tempID = employee_id;
+        }
         Assert.assertEquals(tempID, employee_id);
 
     }
@@ -91,16 +97,14 @@ public class APIWorkFlowSteps {
         //data comes from feature file                                   //key         //value
         List<Map<String, String>> expectedData = dataTable.asMaps(String.class, String.class);
 
-        //data comes from get call body
-        Map<String, String> actualData = response.body().jsonPath().get(empObject);
-
         for (Map<String, String> singelePairOfData : expectedData) {
             //it will return the set of keys from the map
             Set<String> keys = singelePairOfData.keySet();
 
             for (String key : keys) {
                 String expectedValue = singelePairOfData.get(key);
-                String actualValue = actualData.get(key);
+                String jsonPathKey = "root".equalsIgnoreCase(empObject) ? key : empObject + "." + key;
+                String actualValue = response.jsonPath().getString(jsonPathKey);
                 Assert.assertEquals(expectedValue, actualValue);
             }
         }
@@ -116,12 +120,12 @@ public class APIWorkFlowSteps {
 
     @Given("a request is prepared to create an employee via json payload via dynamic payload {string}, {string}, {string}, {string}, {string}, {string}, {string}")
         public void aRequestIsPreparedToCreateAnEmployeeViaJsonPayloadViaDynamicPayload(
-            String firstName, String lastName, String middleName, String gender, String dob, String status, String jobTitle) {
+            String firstName, String lastName, String totalPrice, String depositPaid, String checkIn, String checkOut, String needs) {
 
             request = given().header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE).
                           header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
-                               body(APIPayLoadConstants.createEmployeeDynamic(firstName,lastName,middleName,
-                                       gender,dob,status,jobTitle));
+                               body(APIPayLoadConstants.createEmployeeDynamic(firstName,lastName,Integer.parseInt(totalPrice),
+                                       Boolean.parseBoolean(depositPaid),checkIn,checkOut,needs));
 
     }
 }
